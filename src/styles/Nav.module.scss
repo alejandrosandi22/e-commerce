@@ -1,0 +1,204 @@
+.nav {
+  position: fixed;
+  width: 100%;
+  height: 4rem;
+  background: var(--background);
+  display: grid;
+  align-items: center;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 4rem;
+  grid-template-areas: 'logo nav user';
+  h1 {
+    grid-area: logo;
+    justify-self: end;
+    font-size: 1.5em;
+    font-weight: 400;
+    color: var(--color);
+    width: 100%;
+    padding: 0 0 0 4rem;
+    cursor: pointer;
+  }
+  .list {
+    grid-area: nav;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    justify-content: space-around;
+    width: 80%;
+    height: 100%;
+    li {
+      a {
+        font-size: 1.1em;
+        font-weight: 400;
+        color: var(--color);
+        cursor: pointer;
+        &:hover {
+          filter: brightness(70%);
+        }
+      }
+    }
+  }
+  .userList {
+    grid-area: user;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    form {
+      position: relative;
+      height: 100%;
+      width: 15rem;
+      display: flex;
+      align-items: center;
+      input {
+        position: absolute;
+        right: 1rem;
+        height: 1.8rem;
+        border: none;
+        outline: none;
+        width: 0%;
+        transition: 0.5s;
+        &:hover,
+        &:active,
+        &:focus,
+        &:focus-visible {
+          width: 14rem;
+          padding: 0 1.3rem 0 1rem;
+        }
+        &:focus-visible {
+          outline: 1px solid #333;
+        }
+      }
+      button {
+        z-index: 10;
+        border: none;
+        outline: none;
+        position: absolute;
+        right: 0rem;
+        color: var(--background);
+        background: var(--color);
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+        i {
+          font-size: 0.8rem;
+        }
+        &:hover ~ input,
+        &:active ~ input,
+        &:focus ~ input {
+          width: 14rem;
+          padding: 0 1.3rem 0 1rem;
+        }
+      }
+    }
+    a {
+      margin: 0 0.5rem;
+      font-size: 1.1em;
+      color: var(--color);
+      cursor: pointer;
+      &:hover {
+        filter: brightness(70%);
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav {
+    height: 8rem;
+    grid-template-columns: 50% 50%;
+    grid-area: 'logo user';
+    .toggleWrapper {
+      position: absolute;
+      top: 0.45rem;
+      left: 0.45rem;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      .toggle,
+      .toggle::after,
+      .toggle::before {
+        z-index: 200;
+        content: '';
+        position: absolute;
+        width: 1.8rem;
+        height: 0.1rem;
+        background: var(--color);
+        transition: 0.1s;
+      }
+      .toggle {
+        top: 1rem;
+      }
+      .toggle::before {
+        top: 0.5rem;
+      }
+      .toggle::after {
+        top: 1rem;
+      }
+      .active {
+        top: unset;
+        transform: rotate(-45deg);
+        transition: 0.2s;
+        &::before {
+          top: 0;
+          transform: rotate(90deg);
+        }
+        &::after {
+          all: unset;
+        }
+      }
+    }
+    h1 {
+      white-space: nowrap;
+      font-size: 1.2rem;
+    }
+    .list {
+      top: 8rem;
+      position: fixed;
+      flex-direction: column;
+      height: 16rem;
+      width: 100%;
+    }
+    .userList {
+      display: flex;
+      form {
+        position: absolute;
+        height: 50%;
+        width: 100%;
+        right: 2rem;
+        bottom: 0;
+        input {
+          &:hover,
+          &:active,
+          &:focus,
+          &:focus-visible {
+            width: calc(100% - 5rem);
+            padding: 0 1.3rem 0 1rem;
+          }
+        }
+        button {
+          &:hover ~ input,
+          &:active ~ input,
+          &:focus ~ input {
+            width: calc(100% - 5rem);
+            padding: 0 1.3rem 0 1rem;
+          }
+        }
+      }
+      li {
+        position: absolute;
+        right: 1rem;
+      }
+    }
+  }
+}
