@@ -1,7 +1,12 @@
 :root {
-  --background: #d6d6d6;
+  --background: #fff;
+  --secondary: #f7f6f3;
   --color: #737373;
+  --color: #37352f;
   font-size: 16px;
+  @media (max-width: 1366px) {
+    font-size: 12px;
+  }
 }
 
 html,

@@ -1,0 +1,20 @@
+.card {
+  background: #fff;
+  min-width: 150px;
+  width: 23vw;
+  max-width: 500px;
+  height: 35rem;
+  border-radius: 5px;
+  div {
+    width: 20px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 720px) {
+  .card {
+    min-width: 150px;
+    height: 300px;
+    margin: 0 2px;
+  }
+}
