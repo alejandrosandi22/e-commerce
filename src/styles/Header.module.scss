@@ -1,0 +1,45 @@
+.header {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 3rem);
+  max-height: 1080px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  div {
+    margin: 0 2rem 0 0;
+    h3 {
+      text-align: end;
+      font-size: 7rem;
+      font-weight: 100;
+      text-transform: uppercase;
+      text-shadow: 5px 5px 0px #c6c6c6;
+    }
+  }
+  span {
+    position: relative;
+    width: 35rem;
+    height: 35rem;
+    transition: 0.5s;
+    img {
+      filter: drop-shadow(5px 5px 0px #c6c6c6);
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .header {
+    flex-direction: column;
+    div {
+      margin: 3rem 0;
+      h3 {
+        font-size: 3rem;
+      }
+    }
+    span {
+      width: 20rem;
+      height: 20rem;
+    }
+  }
+}

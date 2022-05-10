@@ -1,4 +1,5 @@
 .nav {
+  z-index: 100;
   position: fixed;
   width: 100%;
   height: 4rem;
@@ -28,13 +29,33 @@
     width: 80%;
     height: 100%;
     li {
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        background: var(--color);
+        bottom: 0;
+        transition: 0.25s;
+      }
       a {
         font-size: 1.1em;
         font-weight: 400;
         color: var(--color);
         cursor: pointer;
         &:hover {
-          filter: brightness(70%);
+          color: #222;
+        }
+      }
+      &:hover {
+        &::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 1px;
+          background: #222;
+          bottom: 0;
         }
       }
     }
@@ -168,6 +189,7 @@
       flex-direction: column;
       height: 16rem;
       width: 100%;
+      transform: translateX(100%);
     }
     .userList {
       display: flex;

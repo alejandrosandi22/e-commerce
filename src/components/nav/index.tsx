@@ -1,11 +1,16 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from 'styles/Nav.module.scss';
+import SearchButton from './searchButton';
 
 export default function Nav() {
   const [toggle, setToggle] = useState<boolean>(false);
 
   const handleToggle = () => setToggle(!toggle);
+
+  useEffect(() => {
+    window.scroll;
+  }, []);
 
   const user = {
     id: '46541dsf5d4fd148h7',
@@ -16,7 +21,11 @@ export default function Nav() {
   return (
     <>
       <nav className={styles.nav}>
-        <h1>E-Commerce</h1>
+        <Link href="/">
+          <a>
+            <h1>E-Commerce</h1>
+          </a>
+        </Link>
         <div onClick={() => handleToggle()} className={styles.toggleWrapper}>
           <span className={styles.toggle}></span>
         </div>
@@ -32,12 +41,7 @@ export default function Nav() {
           </li>
         </ul>
         <ul className={styles.userList}>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <button onSubmit={(e) => e.preventDefault()}>
-              <i className="fal fa-search"></i>
-            </button>
-            <input type="text" id="serach" placeholder="Serach ..." />
-          </form>
+          <SearchButton />
           <li>
             {!user ? (
               <Link href="/signin">
