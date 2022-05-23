@@ -1,7 +1,8 @@
+import React from 'react';
 import Link from 'next/link';
 import styles from 'styles/Categories.module.scss';
 
-export default function Categories() {
+function Categories() {
   return (
     <ul className={styles.categories}>
       <li>
@@ -27,3 +28,5 @@ export default function Categories() {
     </ul>
   );
 }
+
+export default React.memo(Categories);

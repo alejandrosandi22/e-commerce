@@ -3,11 +3,9 @@
   background: var(--secondary);
   .pageHeader {
     position: relative;
-    //background: url(https://www.dhresource.com/f2/decorate/g15/M00/9D/13/rBVa3mIwUt-AC5fqAAOYn335Sso313.jpg)
-    //no-repeat;
-    //background-size: cover;
-    //background-position: center;
-    background: blue;
+    background: url(http://localhost:3000/assets/banner.png) no-repeat;
+    background-size: cover;
+    background-position: center;
     width: 100%;
     height: 35rem;
     max-height: 650px;
@@ -15,7 +13,7 @@
   .homeContent {
     z-index: 50;
     position: relative;
-    margin: -250px 0 0 0;
+    margin: -90px 0 0 0;
     width: 100%;
     min-height: 500px;
     display: flex;
@@ -33,6 +31,10 @@
       min-height: 200px;
       height: 25rem;
       background: var(--background);
+      background: url(/assets/banner2.png) no-repeat;
+      background-size: cover;
+      background-position: center;
+      border-radius: 5px;
     }
   }
 }

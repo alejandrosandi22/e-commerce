@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from 'styles/Header.module.scss';
 
 export default function Header() {
@@ -7,7 +7,6 @@ export default function Header() {
     '/assets/manchester-city.png',
     '/assets/fc-barcelona.png',
     '/assets/liverpool.png',
-    '/assets/ajax.png',
     '/assets/inter.png',
   ];
 
