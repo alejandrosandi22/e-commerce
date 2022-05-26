@@ -8,6 +8,7 @@ interface DataType {
   endpoint: string;
   locality: string;
   season: string;
+  type: string;
   price: string;
   category: string;
   size: Array<string>;
@@ -33,7 +34,8 @@ export default function Card({ data }: PropsType) {
             />
           </div>
         </div>
-        <h1>{`${data.team} ${data.season} ${data.locality} ${
+        <h1>{`${data.team} ${data.season ?? ''} ${data.locality ?? data.type} ${
+          data.category &&
           data.category.charAt(0).toUpperCase() + data.category.slice(1)
         }`}</h1>
         <div className={styles.link}>
