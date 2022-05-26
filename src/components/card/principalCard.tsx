@@ -6,22 +6,20 @@ interface DataType {
   team: string;
   image: string;
   endpoint: string;
-  locality: string;
   price: string;
   category: string;
-  size: Array<string>;
   sold: number;
-  createdAt: string;
-  updatedAt: string;
 }
 
 interface PropsType {
   data: DataType[];
+  type: string;
 }
 
-export default function PrincipalCard({ data }: PropsType) {
+export default function PrincipalCard({ data, type }: PropsType) {
   return (
     <li className={styles.card}>
+      <h1>{type}</h1>
       <div className={styles.wrapper}>
         <div className={styles.image}>
           <Image

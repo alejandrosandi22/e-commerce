@@ -7,9 +7,13 @@ export default function Nav() {
   const [toggle, setToggle] = useState<boolean>(false);
 
   const handleToggle = () => setToggle(!toggle);
+  const [scroll, setScroll] = useState<boolean>(false);
 
   useEffect(() => {
-    window.scroll;
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset >= 40) setScroll(true);
+      else setScroll(false);
+    });
   }, []);
 
   const user = {
@@ -20,7 +24,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className={styles.nav}>
+      <nav className={`${styles.nav} ${scroll ? styles.scroll : ''}`}>
         <Link href="/">
           <a>
             <h1>E-Commerce</h1>
