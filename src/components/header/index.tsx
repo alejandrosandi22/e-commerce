@@ -4,10 +4,10 @@ import styles from 'styles/Header.module.scss';
 
 export default function Header() {
   const links: string[] = [
-    '/assets/manchester-city.png',
+    '/assets/juventus.png',
     '/assets/fc-barcelona.png',
-    '/assets/liverpool.png',
-    '/assets/inter.png',
+    '/assets/real-madrid.png',
+    '/assets/bayern-munich.png',
   ];
 
   const [src, setSrc] = useState<string>(links[0]);

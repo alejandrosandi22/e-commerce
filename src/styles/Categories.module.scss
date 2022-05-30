@@ -1,7 +1,7 @@
 .categories {
   z-index: 100;
   position: sticky;
-  top: 4rem;
+  top: 5rem;
   height: 3rem;
   width: 100%;
   background: var(--background);
@@ -11,6 +11,8 @@
   align-items: center;
   justify-content: space-evenly;
   list-style: none;
+  transition: 0.4s;
+
   li {
     position: relative;
     &::before {
@@ -42,6 +44,10 @@
       }
     }
   }
+}
+.scroll {
+  top: 4rem;
+  transition: 0.4s;
 }
 
 @media (max-width: 1024px) {

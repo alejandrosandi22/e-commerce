@@ -1,6 +1,7 @@
 .nav {
   z-index: 100;
   position: fixed;
+  top: 0;
   width: 100%;
   height: 5.5rem;
   transition: 0.4s;
@@ -82,6 +83,7 @@
         border: none;
         outline: none;
         width: 0%;
+        background: #f3f3f3;
         transition: 0.5s;
         &:hover,
         &:active,
@@ -89,6 +91,7 @@
         &:focus-visible {
           width: 14rem;
           padding: 0 1.3rem 0 1rem;
+          border-radius: 5px 0 0 5px;
         }
         &:focus-visible {
           outline: 1px solid #333;
@@ -140,12 +143,13 @@
 
 @media (max-width: 1024px) {
   .nav {
+    position: fixed;
     height: 8rem;
     grid-template-columns: 50% 50%;
     grid-area: 'logo user';
     .toggleWrapper {
       position: absolute;
-      top: 0.45rem;
+      bottom: 3.5rem;
       left: 0.45rem;
       width: 3rem;
       height: 3rem;
