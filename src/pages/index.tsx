@@ -2,37 +2,12 @@ import Card from 'components/card';
 import PrincipalCard from 'components/card/principalCard';
 import Footer from 'components/footer';
 import Header from 'components/header';
-import Categories from 'components/nav/categores';
+import Categories from 'components/nav/categories';
 import { GetServerSideProps } from 'next';
+import Image from 'next/image';
 import Nav from '../components/nav';
 import styles from '../styles/Home.module.scss';
-
-interface DataType {
-  _id: string;
-  team: string;
-  image: string;
-  endpoint: string;
-  locality: string;
-  type: string;
-  season: string;
-  price: string;
-  category: string;
-  size: string[];
-  sold: number;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface Data {
-  kits: DataType[];
-  training: DataType[];
-  lifestyle: DataType[];
-  accesories: DataType[];
-  kitsCreatedAtOrder: DataType[];
-  trainingCreatedAtOrder: DataType[];
-  lifestyleCreatedAtOrder: DataType[];
-  accesoriesCreatedAtOrder: DataType[];
-}
+import { ProductType, PrincipalType } from 'types';
 
 export default function Home({
   kits,
@@ -43,14 +18,16 @@ export default function Home({
   trainingCreatedAtOrder,
   lifestyleCreatedAtOrder,
   accesoriesCreatedAtOrder,
-}: Data) {
+}: PrincipalType) {
   return (
     <div className={styles.home}>
       <Nav />
       <Header />
       <Categories />
       <main>
-        <section className={styles.pageHeader}></section>
+        <section className={styles.pageHeader}>
+          <Image src="/assets/banner.png" layout="fill" />
+        </section>
         <section className={styles.homeContent}>
           <ul className={styles.cardsWrapper}>
             <PrincipalCard data={kits} type="Kits" />
@@ -58,7 +35,13 @@ export default function Home({
             <PrincipalCard data={lifestyle} type="Lifestyle Products" />
             <PrincipalCard data={accesories} type="Accesories" />
           </ul>
-          <div className={styles.princialProducts}></div>
+          <div className={styles.princialProducts}>
+            <Image
+              src="/assets/banner2.png"
+              layout="fill"
+              className={styles.princialProducts}
+            />
+          </div>
           <ul>
             <Card data={kitsCreatedAtOrder[0]} />
             <Card data={kitsCreatedAtOrder[1]} />
@@ -92,8 +75,10 @@ export default function Home({
 
 export const getServerSideProps: GetServerSideProps = async () => {
   //kits
-  const kitsResult = await fetch('http://localhost:4000/products/kits/sold/4');
-  const kitsCreatedAtOrderResult = await fetch(
+  const kitsResult: Response = await fetch(
+    'http://localhost:4000/products/kits/sold/4'
+  );
+  const kitsCreatedAtOrderResult: Response = await fetch(
     'http://localhost:4000/products/kits/createdAt/4'
   );
 
@@ -101,37 +86,40 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const kits = await kitsResult.json();
 
   //training
-  const trainingCreatedAtOrderResult = await fetch(
+  const trainingCreatedAtOrderResult: Response = await fetch(
     'http://localhost:4000/products/training/createdAt/4'
   );
-  const trainingResult = await fetch(
+  const trainingResult: Response = await fetch(
     'http://localhost:4000/products/training/sold/4'
   );
 
-  const trainingCreatedAtOrder = await trainingCreatedAtOrderResult.json();
-  const training = await trainingResult.json();
+  const trainingCreatedAtOrder: ProductType =
+    await trainingCreatedAtOrderResult.json();
+  const training: ProductType = await trainingResult.json();
 
   //lifestyle
-  const lifestyleResult = await fetch(
+  const lifestyleResult: Response = await fetch(
     'http://localhost:4000/products/lifestyle/sold/4'
   );
-  const lifestyleCreatedAtOrderResult = await fetch(
+  const lifestyleCreatedAtOrderResult: Response = await fetch(
     'http://localhost:4000/products/lifestyle/createdAt/4'
   );
 
-  const lifestyleCreatedAtOrder = await lifestyleCreatedAtOrderResult.json();
-  const lifestyle = await lifestyleResult.json();
+  const lifestyleCreatedAtOrder: ProductType =
+    await lifestyleCreatedAtOrderResult.json();
+  const lifestyle: ProductType = await lifestyleResult.json();
 
   //accesories
-  const accesoriesResult = await fetch(
+  const accesoriesResult: Response = await fetch(
     'http://localhost:4000/products/accesories/sold/4'
   );
-  const accesoriesCreatedAtOrderResult = await fetch(
+  const accesoriesCreatedAtOrderResult: Response = await fetch(
     'http://localhost:4000/products/accesories/createdAt/4'
   );
 
-  const accesoriesCreatedAtOrder = await accesoriesCreatedAtOrderResult.json();
-  const accesories = await accesoriesResult.json();
+  const accesoriesCreatedAtOrder: ProductType =
+    await accesoriesCreatedAtOrderResult.json();
+  const accesories: ProductType = await accesoriesResult.json();
 
   return {
     props: {
