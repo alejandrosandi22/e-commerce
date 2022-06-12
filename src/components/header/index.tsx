@@ -38,7 +38,7 @@ export default function Header() {
         <h3>Favorite</h3>
       </div>
       <span style={animation}>
-        <Image src={src} layout="fill" alt="product" />
+        <Image priority src={src} layout='fill' alt='product' />
       </span>
     </header>
   );

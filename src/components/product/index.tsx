@@ -1,19 +1,17 @@
+import styles from 'styles/Product.module.scss';
 import { ProductType } from 'types';
+import ImageViewer from 'components/imageViwer';
+import ViwerLoader from 'components/loader/viwerLoader';
+import Details from 'components/details';
 
-export default function Product({ product }: { product: ProductType }) {
+export default function Product({ product }: { product: ProductType | null }) {
   return (
-    <div style={{ height: '100vh' }}>
-      {product ? (
-        <>
-          <img
-            src={`http://localhost:4000${product.image}`}
-            alt={product.endpoint}
-          />
-          <h2>{product.team}</h2>
-        </>
-      ) : (
-        <h4>Loading</h4>
-      )}
-    </div>
+    <>
+      <section className={styles.info}>
+        {product ? <ImageViewer product={product} /> : <ViwerLoader />}
+        {product ? <Details product={product} /> : <ViwerLoader />}
+      </section>
+      <section className={styles.stats}></section>
+    </>
   );
 }

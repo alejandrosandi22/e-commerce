@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost'],
+    domains: ['sp-api.alejandrosandi.com'],
   },
   reactStrictMode: true,
   eslint: {

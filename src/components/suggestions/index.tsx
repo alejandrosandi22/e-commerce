@@ -1,46 +1,24 @@
-import Card from 'components/card';
+import Card from 'components/cards/card';
+import useFetch from 'hooks/useFetch';
 import styles from 'styles/Suggestions.module.scss';
-import { SuggestionsType } from 'types';
+import { ProductType } from 'types';
 
-export default function Suggestions({
-  suggestions,
-}: {
-  suggestions: SuggestionsType;
-}) {
-  if (!suggestions) return <h1>Loading</h1>;
+export default function Suggestions({ endpoint }: { endpoint: string | null }) {
+  const { data, loading } = useFetch<any>(
+    `https://sp-api.alejandrosandi.com/api/products/team/${endpoint}?sort=sold&limit=4&order=desc`
+  );
+
+  console.log(data);
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className={styles.suggestions}>
-      <ul>
-        <Card data={suggestions.related.kits} />
-        <Card data={suggestions.related.training} />
-        <Card data={suggestions.related.lifestyle} />
-        <Card data={suggestions.related.accesories} />
-      </ul>
-      <ul>
-        <Card data={suggestions.others.kits[0]} />
-        <Card data={suggestions.others.kits[1]} />
-        <Card data={suggestions.others.kits[2]} />
-        <Card data={suggestions.others.kits[3]} />
-      </ul>
-      <ul>
-        <Card data={suggestions.others.training[0]} />
-        <Card data={suggestions.others.training[1]} />
-        <Card data={suggestions.others.training[2]} />
-        <Card data={suggestions.others.training[3]} />
-      </ul>
-      <ul>
-        <Card data={suggestions.others.lifestyle[0]} />
-        <Card data={suggestions.others.lifestyle[1]} />
-        <Card data={suggestions.others.lifestyle[2]} />
-        <Card data={suggestions.others.lifestyle[3]} />
-      </ul>
-      <ul>
-        <Card data={suggestions.others.accesories[0]} />
-        <Card data={suggestions.others.accesories[1]} />
-        <Card data={suggestions.others.accesories[2]} />
-        <Card data={suggestions.others.accesories[3]} />
-      </ul>
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
     </div>
   );
 }

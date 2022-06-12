@@ -1,4 +1,10 @@
 .product {
-  background: var(--secondary);
-  background: #aaa;
+  background: var(--primary);
+  section {
+    margin: 7rem auto 20px auto;
+    width: 95%;
+    height: 500px;
+    background: #fff;
+    display: flex;
+  }
 }
