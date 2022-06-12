@@ -25,7 +25,7 @@ export default function Nav() {
   return (
     <>
       <nav className={`${styles.nav} ${scroll ? styles.scroll : ''}`}>
-        <Link href="/">
+        <Link href='/'>
           <a>
             <h1>E-Commerce</h1>
           </a>
@@ -35,32 +35,32 @@ export default function Nav() {
         </div>
         <ul className={styles.list}>
           <li>
-            <a href="/">Men</a>
+            <a href='/'>Men</a>
           </li>
           <li>
-            <a href="/">Women</a>
+            <a href='/'>Women</a>
           </li>
           <li>
-            <a href="/">Kids</a>
+            <a href='/'>Kids</a>
           </li>
         </ul>
         <ul className={styles.userList}>
           <SearchButton />
           <li>
             {!user ? (
-              <Link href="/signin">
+              <Link href='/signin'>
                 <a>Sign In</a>
               </Link>
             ) : (
               <>
-                <Link href="/profile/:id">
+                <Link href='/profile/:id'>
                   <a>
-                    <i className="fal fa-user"></i>
+                    <i className='fal fa-user'></i>
                   </a>
                 </Link>
-                <Link href="/cart">
+                <Link href='/cart'>
                   <a>
-                    <i className="fal fa-shopping-cart"></i>
+                    <i className='fal fa-shopping-cart'></i>
                   </a>
                 </Link>
               </>

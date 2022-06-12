@@ -1,24 +1,54 @@
-import Card from 'components/card';
-import PrincipalCard from 'components/card/principalCard';
+import React, { useEffect } from 'react';
+import QuadCard from 'components/cards/quadCard';
+import Card from 'components/cards/card';
 import Footer from 'components/footer';
 import Header from 'components/header';
 import Categories from 'components/nav/categories';
-import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import Nav from '../components/nav';
-import styles from '../styles/Home.module.scss';
-import { ProductType, PrincipalType } from 'types';
+import styles from 'styles/Home.module.scss';
+import { QuadCardsType } from 'types';
+import { useAppDispatch } from 'hooks';
+import { setLoading } from 'store/loadingReducer';
+import useFetch from 'hooks/useFetch';
 
-export default function Home({
-  kits,
-  training,
-  lifestyle,
-  accesories,
-  kitsCreatedAtOrder,
-  trainingCreatedAtOrder,
-  lifestyleCreatedAtOrder,
-  accesoriesCreatedAtOrder,
-}: PrincipalType) {
+export function QuadCards() {
+  const { data, loading } = useFetch<QuadCardsType>(
+    'https://sp-api.alejandrosandi.com/api/products?sort=sold&limit=4&order=desc'
+  );
+
+  return (
+    <>
+      <QuadCard data={data.kits} loading={loading} type='Kits' />
+      <QuadCard
+        data={data.training}
+        loading={loading}
+        type='Training Products'
+      />
+      <QuadCard
+        data={data.lifestyle}
+        loading={loading}
+        type='Lifestyle Products'
+      />
+      <QuadCard data={data.accesories} loading={loading} type='Accesories' />
+    </>
+  );
+}
+
+export default function Home() {
+  const dispatch = useAppDispatch();
+
+  const { data, loading } = useFetch<QuadCardsType>(
+    'https://sp-api.alejandrosandi.com/api/products?sort=createdAt&limit=4&order=desc'
+  );
+
+  useEffect(() => {
+    dispatch(setLoading(false));
+    return () => {
+      dispatch(setLoading(true));
+    };
+  }, []);
+
   return (
     <div className={styles.home}>
       <Nav />
@@ -26,45 +56,54 @@ export default function Home({
       <Categories />
       <main>
         <section className={styles.pageHeader}>
-          <Image src="/assets/banner.png" layout="fill" />
+          <Image src='/assets/banner.png' layout='fill' />
         </section>
         <section className={styles.homeContent}>
           <ul className={styles.cardsWrapper}>
-            <PrincipalCard data={kits} type="Kits" />
-            <PrincipalCard data={training} type="Training Products" />
-            <PrincipalCard data={lifestyle} type="Lifestyle Products" />
-            <PrincipalCard data={accesories} type="Accesories" />
+            <QuadCards />
           </ul>
           <div className={styles.princialProducts}>
             <Image
-              src="/assets/banner2.png"
-              layout="fill"
+              src='/assets/banner2.png'
+              layout='fill'
               className={styles.princialProducts}
             />
           </div>
           <ul>
-            <Card data={kitsCreatedAtOrder[0]} />
-            <Card data={kitsCreatedAtOrder[1]} />
-            <Card data={kitsCreatedAtOrder[2]} />
-            <Card data={kitsCreatedAtOrder[3]} />
+            <Card data={loading ? null : data.kits[0]} loading={loading} />
+            <Card data={loading ? null : data.kits[1]} loading={loading} />
+            <Card data={loading ? null : data.kits[2]} loading={loading} />
+            <Card data={loading ? null : data.kits[3]} loading={loading} />
           </ul>
           <ul>
-            <Card data={trainingCreatedAtOrder[0]} />
-            <Card data={trainingCreatedAtOrder[1]} />
-            <Card data={trainingCreatedAtOrder[2]} />
-            <Card data={trainingCreatedAtOrder[3]} />
+            <Card data={loading ? null : data.training[0]} loading={loading} />
+            <Card data={loading ? null : data.training[1]} loading={loading} />
+            <Card data={loading ? null : data.training[2]} loading={loading} />
+            <Card data={loading ? null : data.training[3]} loading={loading} />
           </ul>
           <ul>
-            <Card data={lifestyleCreatedAtOrder[0]} />
-            <Card data={lifestyleCreatedAtOrder[1]} />
-            <Card data={lifestyleCreatedAtOrder[2]} />
-            <Card data={lifestyleCreatedAtOrder[3]} />
+            <Card data={loading ? null : data.lifestyle[0]} loading={loading} />
+            <Card data={loading ? null : data.lifestyle[1]} loading={loading} />
+            <Card data={loading ? null : data.lifestyle[2]} loading={loading} />
+            <Card data={loading ? null : data.lifestyle[3]} loading={loading} />
           </ul>
           <ul>
-            <Card data={accesoriesCreatedAtOrder[0]} />
-            <Card data={accesoriesCreatedAtOrder[1]} />
-            <Card data={accesoriesCreatedAtOrder[2]} />
-            <Card data={accesoriesCreatedAtOrder[3]} />
+            <Card
+              data={loading ? null : data.accesories[0]}
+              loading={loading}
+            />
+            <Card
+              data={loading ? null : data.accesories[1]}
+              loading={loading}
+            />
+            <Card
+              data={loading ? null : data.accesories[2]}
+              loading={loading}
+            />
+            <Card
+              data={loading ? null : data.accesories[3]}
+              loading={loading}
+            />
           </ul>
         </section>
       </main>
@@ -72,65 +111,3 @@ export default function Home({
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  //kits
-  const kitsResult: Response = await fetch(
-    'http://localhost:4000/products/kits/sold/4'
-  );
-  const kitsCreatedAtOrderResult: Response = await fetch(
-    'http://localhost:4000/products/kits/createdAt/4'
-  );
-
-  const kitsCreatedAtOrder = await kitsCreatedAtOrderResult.json();
-  const kits = await kitsResult.json();
-
-  //training
-  const trainingCreatedAtOrderResult: Response = await fetch(
-    'http://localhost:4000/products/training/createdAt/4'
-  );
-  const trainingResult: Response = await fetch(
-    'http://localhost:4000/products/training/sold/4'
-  );
-
-  const trainingCreatedAtOrder: ProductType =
-    await trainingCreatedAtOrderResult.json();
-  const training: ProductType = await trainingResult.json();
-
-  //lifestyle
-  const lifestyleResult: Response = await fetch(
-    'http://localhost:4000/products/lifestyle/sold/4'
-  );
-  const lifestyleCreatedAtOrderResult: Response = await fetch(
-    'http://localhost:4000/products/lifestyle/createdAt/4'
-  );
-
-  const lifestyleCreatedAtOrder: ProductType =
-    await lifestyleCreatedAtOrderResult.json();
-  const lifestyle: ProductType = await lifestyleResult.json();
-
-  //accesories
-  const accesoriesResult: Response = await fetch(
-    'http://localhost:4000/products/accesories/sold/4'
-  );
-  const accesoriesCreatedAtOrderResult: Response = await fetch(
-    'http://localhost:4000/products/accesories/createdAt/4'
-  );
-
-  const accesoriesCreatedAtOrder: ProductType =
-    await accesoriesCreatedAtOrderResult.json();
-  const accesories: ProductType = await accesoriesResult.json();
-
-  return {
-    props: {
-      kits,
-      training,
-      lifestyle,
-      accesories,
-      kitsCreatedAtOrder,
-      trainingCreatedAtOrder,
-      lifestyleCreatedAtOrder,
-      accesoriesCreatedAtOrder,
-    },
-  };
-};

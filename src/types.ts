@@ -1,25 +1,33 @@
+type CommentType = {
+  body: string;
+  author: string;
+  date: string;
+  _id: string;
+};
+
 type ProductType = {
   _id: string;
   team: string;
-  image: string;
+  images: string[];
   endpoint: string;
-  locality: string;
   type: string;
-  season: string;
+  season?: string;
   price: string;
-  category: string;
+  category?: string;
   size: string[];
   sold: number;
+  rate: number[];
+  comments: CommentType[];
   createdAt: string;
   updatedAt: string;
 };
 
 type SuggestionsType = {
   related: {
-    kits: ProductType;
-    training: ProductType;
-    lifestyle: ProductType;
-    accesories: ProductType;
+    kits: ProductType[];
+    training: ProductType[];
+    lifestyle: ProductType[];
+    accesories: ProductType[];
   };
   others: {
     kits: ProductType[];
@@ -40,4 +48,11 @@ type PrincipalType = {
   accesoriesCreatedAtOrder: ProductType[];
 };
 
-export type { ProductType, SuggestionsType, PrincipalType };
+type QuadCardsType = {
+  kits: ProductType[];
+  training: ProductType[];
+  lifestyle: ProductType[];
+  accesories: ProductType[];
+};
+
+export type { ProductType, SuggestionsType, PrincipalType, QuadCardsType };

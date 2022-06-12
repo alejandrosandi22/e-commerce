@@ -4,70 +4,36 @@ import Footer from 'components/footer';
 import Categories from 'components/nav/categories';
 import Product from 'components/product';
 import Suggestions from 'components/suggestions';
-import { GetServerSideProps } from 'next';
-import { SuggestionsType, ProductType } from 'types';
+import { ProductType } from 'types';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
-export default function Products({
-  product,
-  suggestions,
-}: {
-  product: ProductType;
-  suggestions: SuggestionsType;
-}) {
+export default function Products() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState<ProductType>({} as ProductType);
+
+  const router = useRouter();
+  const { id } = router.query;
+
+  useEffect(() => {
+    if (!id) return;
+    async function fetchData() {
+      const res: Response = await fetch(
+        `https://sp-api.alejandrosandi.com/api/products/${id}`
+      );
+      const json: ProductType = await res.json();
+      setData(json);
+      setIsLoading(false);
+    }
+    fetchData();
+  }, [id]);
+
   return (
     <div className={styles.product}>
       <Nav />
       <Categories />
-      <Product product={product} />
-      <Suggestions suggestions={suggestions} />
+      <Product product={isLoading ? null : data} />
       <Footer />
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.query;
-  const productRes: Response = await fetch(
-    `http://localhost:4000/products/${id}`
-  );
-  const product: ProductType = await productRes.json();
-
-  const suggestionsRes: Response = await fetch(
-    `http://localhost:4000/products/team/${product.endpoint}`
-  );
-
-  const suggestionData: SuggestionsType = await suggestionsRes.json();
-
-  const kitsRes: Response = await fetch(
-    'http://localhost:4000/products/kits/sold/4'
-  );
-
-  const trainingRes: Response = await fetch(
-    'http://localhost:4000/products/training/sold/4'
-  );
-
-  const lifestyleRes: Response = await fetch(
-    'http://localhost:4000/products/lifestyle/sold/4'
-  );
-
-  const accesoriesRes: Response = await fetch(
-    'http://localhost:4000/products/accesories/sold/4'
-  );
-
-  const kits: ProductType = await kitsRes.json();
-  const training: ProductType = await trainingRes.json();
-  const lifestyle: ProductType = await lifestyleRes.json();
-  const accesories: ProductType = await accesoriesRes.json();
-
-  const suggestions = {
-    related: suggestionData,
-    others: { kits, training, lifestyle, accesories },
-  };
-
-  return {
-    props: {
-      product,
-      suggestions,
-    },
-  };
-};
