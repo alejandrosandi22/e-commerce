@@ -34,8 +34,11 @@ export default function Products() {
       <Nav />
       <Categories />
       <Product product={isLoading ? null : data} />
-      <ClientsOpinion />
-      <Suggestions endpoint={isLoading ? null : data.endpoint} />
+      <ClientsOpinion
+        rate={isLoading ? null : data.rate}
+        comments={isLoading ? null : data.comments}
+      />
+      {isLoading ? null : <Suggestions endpoint={data.endpoint} />}
       <Footer />
     </div>
   );
