@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
-import QuadCard from 'components/cards/quadCard';
-import Card from 'components/cards/card';
-import Footer from 'components/footer';
+import QuadCard from 'components/shared/cards/quadCard';
+import Card from 'components/shared/cards/card';
+import Footer from 'components/shared/footer';
 import Header from 'components/header';
-import Categories from 'components/nav/categories';
+import Categories from 'components/shared/categories';
 import Image from 'next/image';
-import Nav from '../components/nav';
+import Nav from 'components/shared/nav';
 import styles from 'styles/Home.module.scss';
-import { QuadCardsType } from 'types';
+import { CollectionsType } from 'types';
 import { useAppDispatch } from 'hooks';
 import { setLoading } from 'store/loadingReducer';
 import useFetch from 'hooks/useFetch';
 
 export function QuadCards() {
-  const { data, loading } = useFetch<QuadCardsType>(
+  const { data, loading } = useFetch<CollectionsType>(
     'https://sp-api.alejandrosandi.com/api/products?sort=sold&limit=4&order=desc'
   );
 
@@ -38,7 +38,7 @@ export function QuadCards() {
 export default function Home() {
   const dispatch = useAppDispatch();
 
-  const { data, loading } = useFetch<QuadCardsType>(
+  const { data, loading } = useFetch<CollectionsType>(
     'https://sp-api.alejandrosandi.com/api/products?sort=createdAt&limit=4&order=desc'
   );
 

@@ -48,11 +48,11 @@ type PrincipalType = {
   accesoriesCreatedAtOrder: ProductType[];
 };
 
-type QuadCardsType = {
+type CollectionsType = {
   kits: ProductType[];
   training: ProductType[];
   lifestyle: ProductType[];
   accesories: ProductType[];
 };
 
-export type { ProductType, SuggestionsType, PrincipalType, QuadCardsType };
+export type { ProductType, SuggestionsType, PrincipalType, CollectionsType };

@@ -1,12 +1,13 @@
 import styles from 'styles/Product.module.scss';
-import Nav from 'components/nav';
-import Footer from 'components/footer';
-import Categories from 'components/nav/categories';
+import Nav from 'components/shared/nav';
+import Footer from 'components/shared/footer';
+import Categories from 'components/shared/categories';
 import Product from 'components/product';
 import Suggestions from 'components/suggestions';
 import { ProductType } from 'types';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import ClientsOpinion from 'components/clientsOpinion';
 
 export default function Products() {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +34,8 @@ export default function Products() {
       <Nav />
       <Categories />
       <Product product={isLoading ? null : data} />
+      <ClientsOpinion />
+      <Suggestions endpoint={isLoading ? null : data.endpoint} />
       <Footer />
     </div>
   );

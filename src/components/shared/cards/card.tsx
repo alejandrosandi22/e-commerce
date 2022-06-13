@@ -1,4 +1,4 @@
-import CardLoader from 'components/loader/cardLoader';
+import CardLoader from 'components/shared/loaders/cardLoader';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from 'styles/Card.module.scss';

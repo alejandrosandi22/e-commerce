@@ -2,7 +2,7 @@ import styles from 'styles/QuadCard.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ProductType } from 'types';
-import QuadCardLoader from 'components/loader/quadCardLoader';
+import QuadCardLoader from 'components/shared/loaders/quadCardLoader';
 
 export default function QuadCard({
   data,
