@@ -1,10 +1,19 @@
 .product {
   background: var(--primary);
-  section {
+  .info {
     margin: 7rem auto 20px auto;
     width: 95%;
     height: 500px;
     background: #fff;
     display: flex;
+    .viewerContainer,
+    .detailsContainer {
+      width: 50%;
+      height: 100%;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }
