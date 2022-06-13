@@ -55,4 +55,10 @@ type CollectionsType = {
   accesories: ProductType[];
 };
 
-export type { ProductType, SuggestionsType, PrincipalType, CollectionsType };
+export type {
+  ProductType,
+  SuggestionsType,
+  PrincipalType,
+  CollectionsType,
+  CommentType,
+};

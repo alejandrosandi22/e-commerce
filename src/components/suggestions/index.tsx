@@ -3,7 +3,7 @@ import useFetch from 'hooks/useFetch';
 import styles from 'styles/Suggestions.module.scss';
 import { CollectionsType } from 'types';
 
-export default function Suggestions({ endpoint }: { endpoint: string | null }) {
+export default function Suggestions({ endpoint }: { endpoint: string }) {
   const { data: similarData, loading: similarDataLoading } =
     useFetch<CollectionsType>(
       `https://sp-api.alejandrosandi.com/api/products/team/${endpoint}?sort=sold&limit=1&order=desc`
