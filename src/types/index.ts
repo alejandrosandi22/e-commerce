@@ -22,43 +22,11 @@ type ProductType = {
   updatedAt: string;
 };
 
-type SuggestionsType = {
-  related: {
-    kits: ProductType[];
-    training: ProductType[];
-    lifestyle: ProductType[];
-    accesories: ProductType[];
-  };
-  others: {
-    kits: ProductType[];
-    training: ProductType[];
-    lifestyle: ProductType[];
-    accesories: ProductType[];
-  };
-};
-
-type PrincipalType = {
-  kits: ProductType[];
-  training: ProductType[];
-  lifestyle: ProductType[];
-  accesories: ProductType[];
-  kitsCreatedAtOrder: ProductType[];
-  trainingCreatedAtOrder: ProductType[];
-  lifestyleCreatedAtOrder: ProductType[];
-  accesoriesCreatedAtOrder: ProductType[];
-};
-
 type CollectionsType = {
   kits: ProductType[];
   training: ProductType[];
   lifestyle: ProductType[];
-  accesories: ProductType[];
+  accessories: ProductType[];
 };
 
-export type {
-  ProductType,
-  SuggestionsType,
-  PrincipalType,
-  CollectionsType,
-  CommentType,
-};
+export type { ProductType, CollectionsType, CommentType };

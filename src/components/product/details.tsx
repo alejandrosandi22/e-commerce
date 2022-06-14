@@ -1,7 +1,29 @@
+import { useState } from 'react';
 import styles from 'styles/Details.module.scss';
 import { ProductType } from 'types';
 
+function toNumber(price: string) {
+  const splitPrice = price.split(',');
+  const newPrice = `${splitPrice[0]}.${splitPrice[1]}`;
+
+  const result = parseFloat(newPrice);
+
+  return result;
+}
+
 export default function Details({ product }: { product: ProductType }) {
+  const [amount, setAmount] = useState<number>(1);
+
+  const increaseAmount = () => {
+    if (amount === 10) return;
+    setAmount(amount + 1);
+  };
+
+  const decreaseAmount = () => {
+    if (amount === 1) return;
+    setAmount(amount - 1);
+  };
+
   return (
     <div className={styles.mainDetails}>
       <h1>
@@ -34,14 +56,18 @@ export default function Details({ product }: { product: ProductType }) {
         <div className={styles.amountWrapper}>
           <label>Amount:</label>
           <span>
-            <button>-</button>
-            <p>1</p>
-            <button>+</button>
+            <button type='button' onClick={decreaseAmount}>
+              -
+            </button>
+            <p>{amount}</p>
+            <button type='button' onClick={increaseAmount}>
+              +
+            </button>
           </span>
         </div>
         <div className={styles.totalWrapper}>
           <h3>Total:</h3>
-          <p>${product.price}</p>
+          <p>${(toNumber(product.price) * amount).toFixed(2)}</p>
         </div>
         <button className={styles.submitButton}>Add to cart</button>
       </form>

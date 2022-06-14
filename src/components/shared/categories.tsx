@@ -15,22 +15,22 @@ function Categories() {
   return (
     <ul className={`${styles.categories} ${scroll ? styles.scroll : ''}`}>
       <li>
-        <Link href='/categories/:category'>
+        <Link href='/category/kits'>
           <a>Kits</a>
         </Link>
       </li>
       <li>
-        <Link href='/categories/:category'>
+        <Link href='/category/training'>
           <a>Training</a>
         </Link>
       </li>
       <li>
-        <Link href='/categories/:category'>
+        <Link href='/category/lifestyle'>
           <a>Lifestyle</a>
         </Link>
       </li>
       <li>
-        <Link href='/categories/:category'>
+        <Link href='/category/accessories'>
           <a>Accessories</a>
         </Link>
       </li>
