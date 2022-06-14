@@ -30,7 +30,7 @@ export default function Suggestions({ endpoint }: { endpoint: string }) {
         />
         <Card
           loading={similarDataLoading}
-          data={similarDataLoading ? null : similarData.accesories[0]}
+          data={similarDataLoading ? null : similarData.accessories[0]}
         />
       </ul>
       <ul>
@@ -90,19 +90,19 @@ export default function Suggestions({ endpoint }: { endpoint: string }) {
       <ul>
         <Card
           loading={recommendedDataLoading}
-          data={recommendedDataLoading ? null : recommendedData.accesories[0]}
+          data={recommendedDataLoading ? null : recommendedData.accessories[0]}
         />
         <Card
           loading={recommendedDataLoading}
-          data={recommendedDataLoading ? null : recommendedData.accesories[1]}
+          data={recommendedDataLoading ? null : recommendedData.accessories[1]}
         />
         <Card
           loading={recommendedDataLoading}
-          data={recommendedDataLoading ? null : recommendedData.accesories[2]}
+          data={recommendedDataLoading ? null : recommendedData.accessories[2]}
         />
         <Card
           loading={recommendedDataLoading}
-          data={recommendedDataLoading ? null : recommendedData.accesories[3]}
+          data={recommendedDataLoading ? null : recommendedData.accessories[3]}
         />
       </ul>
     </div>

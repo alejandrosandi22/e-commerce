@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import QuadCard from 'components/shared/cards/quadCard';
 import Card from 'components/shared/cards/card';
 import Footer from 'components/shared/footer';
@@ -8,8 +7,6 @@ import Image from 'next/image';
 import Nav from 'components/shared/nav';
 import styles from 'styles/Home.module.scss';
 import { CollectionsType } from 'types';
-import { useAppDispatch } from 'hooks';
-import { setLoading } from 'store/loadingReducer';
 import useFetch from 'hooks/useFetch';
 
 export function QuadCards() {
@@ -30,24 +27,15 @@ export function QuadCards() {
         loading={loading}
         type='Lifestyle Products'
       />
-      <QuadCard data={data.accesories} loading={loading} type='Accesories' />
+      <QuadCard data={data.accessories} loading={loading} type='Accessories' />
     </>
   );
 }
 
 export default function Home() {
-  const dispatch = useAppDispatch();
-
   const { data, loading } = useFetch<CollectionsType>(
     'https://sp-api.alejandrosandi.com/api/products?sort=createdAt&limit=4&order=desc'
   );
-
-  useEffect(() => {
-    dispatch(setLoading(false));
-    return () => {
-      dispatch(setLoading(true));
-    };
-  }, []);
 
   return (
     <div className={styles.home}>
@@ -89,19 +77,19 @@ export default function Home() {
           </ul>
           <ul>
             <Card
-              data={loading ? null : data.accesories[0]}
+              data={loading ? null : data.accessories[0]}
               loading={loading}
             />
             <Card
-              data={loading ? null : data.accesories[1]}
+              data={loading ? null : data.accessories[1]}
               loading={loading}
             />
             <Card
-              data={loading ? null : data.accesories[2]}
+              data={loading ? null : data.accessories[2]}
               loading={loading}
             />
             <Card
-              data={loading ? null : data.accesories[3]}
+              data={loading ? null : data.accessories[3]}
               loading={loading}
             />
           </ul>
