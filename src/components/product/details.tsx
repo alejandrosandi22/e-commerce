@@ -2,13 +2,11 @@ import { useState } from 'react';
 import styles from 'styles/Details.module.scss';
 import { ProductType } from 'types';
 
-function toNumber(price: string) {
-  const splitPrice = price.split(',');
-  const newPrice = `${splitPrice[0]}.${splitPrice[1]}`;
+function priceFormatter(price: number, amount: number) {
+  const newPrice = (price * amount).toFixed(2);
+  const splitPrice = newPrice.split('.');
 
-  const result = parseFloat(newPrice);
-
-  return result;
+  return `$${splitPrice[0]},${splitPrice[1]}`;
 }
 
 export default function Details({ product }: { product: ProductType }) {
@@ -67,7 +65,7 @@ export default function Details({ product }: { product: ProductType }) {
         </div>
         <div className={styles.totalWrapper}>
           <h3>Total:</h3>
-          <p>${(toNumber(product.price) * amount).toFixed(2)}</p>
+          <p>{priceFormatter(product.price, amount)}</p>
         </div>
         <button className={styles.submitButton}>Add to cart</button>
       </form>

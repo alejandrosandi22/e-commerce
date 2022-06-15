@@ -12,7 +12,7 @@ type ProductType = {
   endpoint: string;
   type: string;
   season?: string;
-  price: string;
+  price: number;
   category?: string;
   size: string[];
   sold: number;

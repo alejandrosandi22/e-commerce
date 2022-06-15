@@ -4,6 +4,11 @@ import Link from 'next/link';
 import styles from 'styles/Card.module.scss';
 import { ProductType } from 'types';
 
+function priceFormatter(price: number) {
+  const splitPrice = price.toString().split('.');
+  return `$${splitPrice[0]},${splitPrice[1]}`;
+}
+
 export default function Card({
   data,
   loading,
@@ -34,7 +39,7 @@ export default function Card({
             </a>
           </Link>
           <div className={styles.link}>
-            <h2>{`$${data.price}`}</h2>
+            <h2>{`${priceFormatter(data.price)}`}</h2>
             <Link href={`/product/${data._id}`}>
               <a>Shop now &gt;</a>
             </Link>
