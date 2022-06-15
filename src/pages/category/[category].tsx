@@ -1,13 +1,13 @@
-import Card from 'components/shared/cards/card';
-import Categories from 'components/shared/categories';
-import Nav from 'components/shared/nav';
-import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
-import { ProductType } from 'types';
-import styles from 'styles/Category.module.scss';
-import Footer from 'components/shared/footer';
+import Nav from 'components/shared/nav';
+import Card from 'components/shared/cards/card';
 import ActiveLink from 'components/shared/activeLink';
+import Categories from 'components/shared/categories';
+import Footer from 'components/shared/footer';
+import styles from 'styles/Category.module.scss';
+import { CollectionsType, ProductType } from 'types';
 
 export default function Category() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -18,13 +18,36 @@ export default function Category() {
 
   useEffect(() => {
     if (!category) return;
+
+    let categoryToFetch = category;
+
+    if (category === 'men' || category === 'women' || category === 'kids')
+      categoryToFetch = 'products';
+
     async function fetchData() {
       const res: Response = await fetch(
-        `https://sp-api.alejandrosandi.com/api/${category}?sort=${
+        `https://sp-api.alejandrosandi.com/api/${categoryToFetch}?sort=${
           sort ?? 'createdAt'
         }&order=${order ?? 'desc'}`
       );
+
+      if (categoryToFetch === 'products') {
+        const json: CollectionsType = await res.json();
+        const kits = json.kits.filter((kit) => kit.category === category);
+        const training = json.training.filter(
+          (product) => product.category === category
+        );
+        const lifestyle = json.lifestyle.filter(
+          (product) => product.category === category
+        );
+        const accessories = json.accessories.map((accessory) => accessory);
+
+        setIsLoading(false);
+        return setData([...kits, ...training, ...lifestyle, ...accessories]);
+      }
+
       const json: ProductType[] = await res.json();
+
       setData(json);
       setIsLoading(false);
     }
@@ -87,6 +110,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { category } = context.query;
 
   if (
+    category === 'men' ||
+    category === 'women' ||
+    category === 'kids' ||
     category === 'kits' ||
     category === 'training' ||
     category === 'lifestyle' ||
