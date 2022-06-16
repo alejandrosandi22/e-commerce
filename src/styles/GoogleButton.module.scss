@@ -1,0 +1,25 @@
+.googleButton {
+  position: relative;
+  width: 187px;
+  height: 43px;
+  background: #fff;
+  color: #767676;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  box-shadow: 0 0.5rem 1rem -0.6rem #000;
+  margin: 15px auto;
+  &:hover {
+    filter: brightness(90%);
+  }
+  img {
+    width: 1.563rem;
+    height: 1.563rem;
+    margin-right: 0.7292rem;
+  }
+}
