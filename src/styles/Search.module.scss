@@ -1,0 +1,93 @@
+.searchForm {
+  position: relative;
+  height: 100%;
+  width: 21rem;
+  display: flex;
+  align-items: center;
+  input {
+    position: absolute;
+    right: 1rem;
+    height: 1.8rem;
+    border: none;
+    outline: none;
+    width: 0%;
+    background: #f3f3f3;
+    transition: 0.5s;
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus-visible {
+      width: 20rem;
+      padding: 0 1.3rem 0 1rem;
+      border-radius: 5px 0 0 5px;
+    }
+    &:focus-visible {
+      outline: 1px solid #333;
+    }
+  }
+  button {
+    z-index: 10;
+    border: none;
+    outline: none;
+    position: absolute;
+    right: 0rem;
+    color: var(--background);
+    background: var(--color);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    i {
+      font-size: 0.8rem;
+    }
+    &:hover ~ input,
+    &:active ~ input,
+    &:focus ~ input {
+      width: 20rem;
+      padding: 0 1.3rem 0 1rem;
+    }
+  }
+  .panel {
+    z-index: 100;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    max-height: 300px;
+    width: 20rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    section {
+      ul {
+        list-style: none;
+        li {
+          a {
+            display: flex;
+            width: 100%;
+            padding: 10px 5px;
+            background: #fff;
+            &:hover {
+              filter: brightness(0.9);
+            }
+            .imageWrapper {
+              position: relative;
+              width: 40px;
+              height: 40px;
+            }
+            .autoCompleteTextWrapper {
+              padding: 0 10px;
+              h3 {
+                font-size: 1.1rem;
+              }
+              p {
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

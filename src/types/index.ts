@@ -7,6 +7,7 @@ type CommentType = {
 
 type ProductType = {
   _id: string;
+  title: string;
   team: string;
   images: string[];
   endpoint: string;
