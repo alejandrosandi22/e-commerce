@@ -35,19 +35,13 @@ export default function Nav() {
         </div>
         <ul className={styles.list}>
           <li>
-            <Link href='/category/men'>
-              <a>Men</a>
-            </Link>
+            <a href='/category/men'>Men</a>
           </li>
           <li>
-            <Link href='/category/women'>
-              <a>Women</a>
-            </Link>
+            <a href='/category/women'>Women</a>
           </li>
           <li>
-            <Link href='/category/kids'>
-              <a>Kids</a>
-            </Link>
+            <a href='/category/kids'>Kids</a>
           </li>
         </ul>
         <ul className={styles.userList}>

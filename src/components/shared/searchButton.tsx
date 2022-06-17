@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAutocomplete } from '@algolia/autocomplete-core';
 import React, { useMemo, useRef, useState } from 'react';
 import { ProductType } from 'types';
@@ -35,6 +34,7 @@ export default function SearchButton() {
       createAutocomplete({
         placeholder: 'Search',
         onStateChange: ({ state }) => {
+          console.log(state);
           return setAutocompleteState(state);
         },
         getSources: () => [

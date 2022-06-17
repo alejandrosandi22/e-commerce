@@ -30,18 +30,4 @@ type CollectionsType = {
   accessories: ProductType[];
 };
 
-type UserType = {
-  _id: string;
-  name: string;
-  email: string;
-  cart: {
-    items: [
-      {
-        productId: string;
-        quantity: number;
-      }
-    ];
-  };
-};
-
-export type { ProductType, UserType, CollectionsType, CommentType };
+export type { ProductType, CollectionsType, CommentType };
