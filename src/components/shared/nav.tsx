@@ -1,3 +1,4 @@
+import { useAppSelector } from 'hooks';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from 'styles/Nav.module.scss';
@@ -16,11 +17,7 @@ export default function Nav() {
     });
   }, []);
 
-  const user = {
-    id: '46541dsf5d4fd148h7',
-    name: 'Thomas Gould',
-    cart: {},
-  };
+  const user = useAppSelector((state) => state.user);
 
   return (
     <>
@@ -50,29 +47,33 @@ export default function Nav() {
             </Link>
           </li>
         </ul>
-        <ul className={styles.userList}>
+        <div className={styles.userList}>
           <SearchButton />
-          <li>
-            {!user ? (
+          {!user ? (
+            <li>
               <Link href='/signin'>
                 <a>Sign In</a>
               </Link>
-            ) : (
-              <>
-                <Link href='/profile/:id'>
+            </li>
+          ) : (
+            <ul>
+              <li>
+                <Link href={`/profile/${user.id}`}>
                   <a>
                     <i className='fal fa-user'></i>
                   </a>
                 </Link>
-                <Link href='/cart'>
+              </li>
+              <li>
+                <Link href={`/cart/${user.id}`}>
                   <a>
                     <i className='fal fa-shopping-cart'></i>
                   </a>
                 </Link>
-              </>
-            )}
-          </li>
-        </ul>
+              </li>
+            </ul>
+          )}
+        </div>
       </nav>
     </>
   );

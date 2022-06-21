@@ -23,7 +23,6 @@ export default async function SignIn(
       id: user._id,
       name: user.name,
       email: user.email,
-      cart: user.cart,
     };
     const token = jwt.sign(userForToken, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '8d',

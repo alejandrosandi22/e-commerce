@@ -6,7 +6,7 @@ export default function Header() {
   const links: string[] = [
     '/assets/juventus.png',
     '/assets/fc-barcelona.png',
-    '/assets/real-madrid.png',
+    '/assets/fc-barcelona.png',
     '/assets/bayern-munich.png',
   ];
 
