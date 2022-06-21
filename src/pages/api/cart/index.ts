@@ -11,7 +11,7 @@ export default async function Cart(req: NextApiRequest, res: NextApiResponse) {
 
   if (method === 'GET') {
     const cartData = await User.findById(id);
-    return res.status(200).json({ cart: cartData.cart });
+    return res.status(200).json(cartData.cart);
   }
 
   if (method === 'PUT') {

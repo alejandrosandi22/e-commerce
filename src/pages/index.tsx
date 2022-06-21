@@ -10,6 +10,9 @@ import { CollectionsType, UserType } from 'types';
 import useFetch from 'hooks/useFetch';
 import { GetServerSideProps } from 'next';
 import jwt from 'jsonwebtoken';
+import { useEffect } from 'react';
+import { setUser } from 'store/userReducer';
+import { useAppDispatch } from 'hooks';
 
 export function QuadCards() {
   const { data, loading } = useFetch<CollectionsType>(
@@ -39,7 +42,13 @@ export default function Home({ user }: { user: UserType }) {
     'https://sp-api.alejandrosandi.com/api/products?sort=createdAt&limit=4&order=desc'
   );
 
-  console.log(user);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (user) {
+      dispatch(setUser(user));
+    }
+  }, [user]);
 
   return (
     <div className={styles.home}>

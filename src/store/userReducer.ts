@@ -1,17 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice } from '@reduxjs/toolkit';
+import { CartType } from 'types';
 
 type State = {
+  id: string;
   name: string;
   email: string;
-  cart: {
-    items: [
-      {
-        productId: string;
-        quantity: number;
-      }
-    ];
-  };
+  cart: CartType;
 };
 
 type Action = {
@@ -21,24 +16,9 @@ type Action = {
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    name: '',
-    email: '',
-    cart: {
-      items: [
-        {
-          productId: '',
-          quantity: 0,
-        },
-      ],
-    },
-  },
+  initialState: null as State | null,
   reducers: {
-    setUser: (state: any, action: Action) => {
-      console.log(state);
-      console.log(action);
-      return action.payload;
-    },
+    setUser: (state: State | null, action: Action) => action.payload,
   },
 });
 

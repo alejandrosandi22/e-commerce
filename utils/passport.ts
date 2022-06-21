@@ -3,6 +3,9 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
+import { dbConnect } from './database';
+
+dbConnect();
 
 passport.use(
   'auth-google',
@@ -22,7 +25,7 @@ passport.use(
         const user = await User.findOne({ email: profile.emails[0].value });
 
         if (!user) {
-          const newUser = await new User({
+          const newUser = new User({
             name: profile.displayName,
             email: profile.emails[0].value,
             provider: 'google',
@@ -31,7 +34,7 @@ passport.use(
           const userForToken = {
             name: profile.displayName,
             email: profile.emails[0].value,
-            _id: newUser._id,
+            id: newUser._id,
           };
 
           const token = jwt.sign(

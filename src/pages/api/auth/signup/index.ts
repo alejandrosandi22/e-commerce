@@ -26,7 +26,6 @@ export default async function SignUp(
       id: newUser._id,
       name: `${name} ${lastName}`,
       email,
-      cart: newUser.cart,
     };
 
     const token = jwt.sign(userForToken, process.env.ACCESS_TOKEN_SECRET, {
