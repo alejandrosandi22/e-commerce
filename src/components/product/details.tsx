@@ -1,25 +1,48 @@
-import { useState } from 'react';
+import Counter from 'components/shared/counter';
+import { useAppSelector } from 'hooks';
+import usePriceFormatter from 'hooks/usePriceFormatter';
+import React, { useState } from 'react';
 import styles from 'styles/Details.module.scss';
+import { success, warning } from 'toastr';
 import { ProductType } from 'types';
-
-function priceFormatter(price: number, amount: number) {
-  const newPrice = (price * amount).toFixed(2);
-  const splitPrice = newPrice.split('.');
-
-  return `$${splitPrice[0]},${splitPrice[1]}`;
-}
 
 export default function Details({ product }: { product: ProductType }) {
   const [amount, setAmount] = useState<number>(1);
+  const [sizeProduct, setSizeProduct] = useState<string>('');
+  const { finalPrice } = usePriceFormatter(product.price, amount);
 
-  const increaseAmount = () => {
-    if (amount === 10) return;
-    setAmount(amount + 1);
-  };
+  const user = useAppSelector((state) => state.user);
 
-  const decreaseAmount = () => {
-    if (amount === 1) return;
-    setAmount(amount - 1);
+  const handleAddToCart = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (product.size.length > 0) {
+      if (!sizeProduct) {
+        warning('Please select a size', 'Warning');
+        return;
+      }
+    }
+
+    if (!user) {
+      warning('You must be logged in to add to cart');
+      return;
+    }
+
+    const data = {
+      productId: product._id,
+      quantity: amount,
+      size: sizeProduct,
+    };
+
+    await fetch(`/api/cart?id=${user.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    success('Added to cart');
   };
 
   return (
@@ -33,12 +56,15 @@ export default function Details({ product }: { product: ProductType }) {
             : ''
         } ${product.type} ${product.season ?? ''} ${product.category ?? ''}`}
       </h1>
-      <form>
+      <form onSubmit={handleAddToCart}>
         {product.size && (
           <>
             <span className={styles.sizeWrapepr}>
               <label htmlFor='size'>Size:</label>
-              <select id='size'>
+              <select
+                onChange={(e) => setSizeProduct(e.target.value)}
+                id='size'
+              >
                 <option value='null'>Select your size</option>
                 {product.size.map((size) => {
                   return (
@@ -53,19 +79,11 @@ export default function Details({ product }: { product: ProductType }) {
         )}
         <div className={styles.amountWrapper}>
           <label>Amount:</label>
-          <span>
-            <button type='button' onClick={decreaseAmount}>
-              -
-            </button>
-            <p>{amount}</p>
-            <button type='button' onClick={increaseAmount}>
-              +
-            </button>
-          </span>
+          <Counter setAmount={setAmount} amount={amount} />
         </div>
         <div className={styles.totalWrapper}>
           <h3>Total:</h3>
-          <p>{priceFormatter(product.price, amount)}</p>
+          <p>{finalPrice}</p>
         </div>
         <button className={styles.submitButton}>Add to cart</button>
       </form>

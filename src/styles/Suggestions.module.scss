@@ -22,3 +22,11 @@
     list-style: none;
   }
 }
+
+@media (max-width: 720px) {
+  .suggestions {
+    ul {
+      flex-direction: column;
+    }
+  }
+}

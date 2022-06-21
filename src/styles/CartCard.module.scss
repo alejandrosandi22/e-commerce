@@ -1,20 +1,48 @@
 .cartCard {
   display: flex;
+  justify-content: space-between;
   width: 90%;
   height: 100px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 20px 10px;
   margin-bottom: 20px;
-  .cartCard__image {
+  svg {
+    width: 100%;
     height: 100%;
-    width: 50px;
-    img {
-      width: 100%;
-    }
+  }
+  .cartCard__image {
+    position: relative;
+    height: 60px;
+    width: 60px;
+    margin: 0 10px;
   }
   .cartCard__info {
     display: flex;
     flex-direction: column;
+    width: 75%;
+    .cartCard__info__title {
+      h3 {
+        text-transform: capitalize;
+      }
+    }
+  }
+  .cartCard__actions {
+    display: flex;
+    justify-content: center;
     align-items: center;
+    width: 50px;
+    button {
+      width: 40px;
+      height: 40px;
+      border: none;
+      outline: none;
+      background: #fff;
+      &:hover {
+        filter: brightness(0.9);
+      }
+      i {
+        font-size: 16px;
+      }
+    }
   }
 }

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextApiRequest, NextApiResponse } from 'next';
+import { ItemType } from 'types';
 import User from '../../../../models/User';
 import { dbConnect } from '../../../../utils/database';
 
@@ -15,7 +16,28 @@ export default async function Cart(req: NextApiRequest, res: NextApiResponse) {
   }
 
   if (method === 'PUT') {
-    const { productId, quantity } = req.body;
+    const { productId, quantity, size } = req.body;
+
+    const product = await User.findById(id);
+
+    const productExists = product.cart.find(
+      (item: ItemType) => item.productId === productId
+    );
+
+    if (productExists) {
+      await User.findByIdAndUpdate(
+        id,
+        {
+          $pull: {
+            cart: {
+              productId,
+            },
+          },
+        },
+        { new: true }
+      );
+    }
+
     const updateCart = await User.findByIdAndUpdate(
       id,
       {
@@ -23,6 +45,7 @@ export default async function Cart(req: NextApiRequest, res: NextApiResponse) {
           cart: {
             productId,
             quantity,
+            size,
           },
         },
       },

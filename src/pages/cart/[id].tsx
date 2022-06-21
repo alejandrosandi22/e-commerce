@@ -6,6 +6,7 @@ import Nav from 'components/shared/nav';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from 'styles/Cart.module.scss';
+import { ItemType } from 'types';
 
 export default function Cart() {
   const [cartData, setCartData] = useState([]);
@@ -13,12 +14,18 @@ export default function Cart() {
   const router = useRouter();
   const { id } = router.query;
 
+  const refetch = async () => {
+    const res: Response = await fetch(`/api/cart?id=${id}`);
+    const data = await res.json();
+    setCartData(data);
+    setIsLoading(false);
+  };
+
   useEffect(() => {
     if (!id) return;
     async function fetchCartData() {
       const res: Response = await fetch(`/api/cart?id=${id}`);
       const data = await res.json();
-      console.log(data);
       setIsLoading(false);
       setCartData(data);
     }
@@ -35,11 +42,13 @@ export default function Cart() {
             <Loading />
           ) : (
             <>
-              {cartData.map((item, index) => (
-                <>
-                  <CartCard key={index} />
-                  <CartCard key={index} />
-                </>
+              {cartData.map((item: ItemType, index: number) => (
+                <CartCard
+                  key={`${item.productId}-${index}`}
+                  userId={id}
+                  item={item}
+                  refetch={refetch}
+                />
               ))}
             </>
           )}

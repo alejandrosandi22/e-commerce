@@ -27,6 +27,9 @@ const userSchema = new Schema(
         quantity: {
           type: Number,
         },
+        size: {
+          type: String,
+        },
       },
     ],
   },
