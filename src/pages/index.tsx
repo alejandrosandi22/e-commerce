@@ -6,13 +6,13 @@ import Categories from 'components/shared/categories';
 import Image from 'next/image';
 import Nav from 'components/shared/nav';
 import styles from 'styles/Home.module.scss';
-import { CollectionsType, UserType } from 'types';
 import useFetch from 'hooks/useFetch';
-import { GetServerSideProps } from 'next';
 import jwt from 'jsonwebtoken';
 import { useEffect } from 'react';
 import { setUser } from 'store/userReducer';
 import { useAppDispatch } from 'hooks';
+import { GetServerSideProps } from 'next';
+import { CollectionsType, UserType } from 'types';
 
 export function QuadCards() {
   const { data, loading } = useFetch<CollectionsType>(

@@ -5,6 +5,7 @@
   border-radius: 5px;
   padding: 25px;
   h1 {
+    font-size: clamp(1.2rem, 2vw, 2.5rem);
     padding: 0 0 10px 0;
   }
   .wrapper {
@@ -31,8 +32,17 @@
 
 @media (max-width: 720px) {
   .card {
-    min-width: 150px;
+    min-width: 200px;
     height: 300px;
     margin: 0 2px;
+    .wrapper {
+      height: 180px;
+      grid-template-columns: 75px 75px;
+      grid-template-rows: 75px 75px;
+      .imageWrapper {
+        width: 70px;
+        height: 70px;
+      }
+    }
   }
 }

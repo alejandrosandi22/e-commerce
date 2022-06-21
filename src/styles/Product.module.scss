@@ -17,3 +17,17 @@
     }
   }
 }
+
+@media (max-width: 720px) {
+  .product {
+    .info {
+      flex-direction: column;
+      height: 750px;
+      .viewerContainer,
+      .detailsContainer {
+        width: 100%;
+        height: 50%;
+      }
+    }
+  }
+}

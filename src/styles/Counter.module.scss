@@ -1,0 +1,17 @@
+.span {
+  display: flex;
+  p {
+    font-size: 1.5rem;
+    margin: 0 10px;
+  }
+  button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary);
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+}

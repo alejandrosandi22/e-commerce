@@ -43,4 +43,18 @@ type UserType = {
   cart: CartType;
 };
 
-export type { ProductType, UserType, CollectionsType, CommentType, CartType };
+type ItemType = {
+  _id: string;
+  productId: string;
+  quantity: number;
+  size?: string;
+};
+
+export type {
+  ProductType,
+  UserType,
+  CollectionsType,
+  CommentType,
+  CartType,
+  ItemType,
+};
