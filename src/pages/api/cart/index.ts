@@ -11,8 +11,17 @@ export default async function Cart(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
 
   if (method === 'GET') {
-    const cartData = await User.findById(id);
-    return res.status(200).json(cartData.cart);
+    try {
+      const cartData = await User.findById(id);
+
+      if (cartData) {
+        return res.status(200).json(cartData.cart);
+      }
+
+      res.status(404).json({ message: 'User not found' });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
   }
 
   if (method === 'PUT') {

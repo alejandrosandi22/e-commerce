@@ -7,12 +7,7 @@ import Image from 'next/image';
 import Nav from 'components/shared/nav';
 import styles from 'styles/Home.module.scss';
 import useFetch from 'hooks/useFetch';
-import jwt from 'jsonwebtoken';
-import { useEffect } from 'react';
-import { setUser } from 'store/userReducer';
-import { useAppDispatch } from 'hooks';
-import { GetServerSideProps } from 'next';
-import { CollectionsType, UserType } from 'types';
+import { CollectionsType } from 'types';
 
 export function QuadCards() {
   const { data, loading } = useFetch<CollectionsType>(
@@ -37,18 +32,10 @@ export function QuadCards() {
   );
 }
 
-export default function Home({ user }: { user: UserType }) {
+export default function Home() {
   const { data, loading } = useFetch<CollectionsType>(
     'https://sp-api.alejandrosandi.com/api/products?sort=createdAt&limit=4&order=desc'
   );
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (user) {
-      dispatch(setUser(user));
-    }
-  }, [user]);
 
   return (
     <div className={styles.home}>
@@ -112,20 +99,3 @@ export default function Home({ user }: { user: UserType }) {
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const token = context.req.cookies['e-commerce-user-token'];
-
-  if (token) {
-    const user = jwt.decode(token);
-    return {
-      props: {
-        user,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-};
