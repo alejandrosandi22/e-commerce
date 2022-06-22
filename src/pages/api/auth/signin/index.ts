@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { dbConnect } from '../../../../../utils/database';
+import { setCookies } from 'cookies-next';
 
 dbConnect();
 
@@ -27,6 +28,8 @@ export default async function SignIn(
     const token = jwt.sign(userForToken, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '8d',
     });
+
+    setCookies('e-commerce-user-token', token, { req, res });
     res.status(200).json({ message: 'Successful', token });
   } catch (error) {
     if (error instanceof Error)

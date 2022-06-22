@@ -26,8 +26,15 @@ export default function Cart() {
     async function fetchCartData() {
       const res: Response = await fetch(`/api/cart?id=${id}`);
       const data = await res.json();
+      const status = res.status;
+
+      if (status === 200) {
+        setIsLoading(false);
+        return setCartData(data);
+      }
+
       setIsLoading(false);
-      setCartData(data);
+      router.push('/404');
     }
     fetchCartData();
   }, [id]);
