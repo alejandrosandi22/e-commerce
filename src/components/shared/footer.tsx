@@ -1,74 +1,77 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from 'styles/Footer.module.scss';
 
 export default function Footer() {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.info}>
-        <div className={styles.title}>
-          <div>
+    <footer className='footer'>
+      <div className='footer__info'>
+        <div className='footer__title__wrapper'>
+          <div className='footer__logo__wrapper'>
             <Image src='/logo.png' layout='fill' />
           </div>
-          <h2>E-Commerce</h2>
+          <h2 className='footer__title'>E-Commerce</h2>
         </div>
-        <div className={styles.linksWrapper}>
-          <ul className={styles.links}>
-            <li>Size</li>
-            <li>
-              <Link href='/'>
-                <a>Men</a>
+        <div className='footer__links__wrapper'>
+          <ul className='footer__unordered__list__links'>
+            <li className='footer__list__link'>Size</li>
+            <li className='footer__list__link'>
+              <Link href='/category/men'>
+                <a className='footer__anchor'>Men</a>
               </Link>
             </li>
-            <li>
-              <Link href='/'>
-                <a>Women</a>
+            <li className='footer__list__link'>
+              <Link href='/category/women'>
+                <a className='footer__anchor'>Women</a>
               </Link>
             </li>
-            <li>
-              <Link href='/'>
-                <a>Kids</a>
-              </Link>
-            </li>
-          </ul>
-          <ul className={styles.links}>
-            <li>Type</li>
-            <li>
-              <Link href='/'>
-                <a>Kits</a>
-              </Link>
-            </li>
-            <li>
-              <Link href='/'>
-                <a>Training</a>
-              </Link>
-            </li>
-            <li>
-              <Link href='/'>
-                <a>Lifestyle</a>
-              </Link>
-            </li>
-            <li>
-              <Link href='/'>
-                <a>Accessories</a>
+            <li className='footer__list__link'>
+              <Link href='/category/kids'>
+                <a className='footer__anchor'>Kids</a>
               </Link>
             </li>
           </ul>
-          <ul className={styles.links}>
-            <li>Support</li>
-            <li>
-              <Link href='/'>
-                <a>Email</a>
+          <ul className='footer__unordered__list__links'>
+            <li className='footer__list__link'>Type</li>
+            <li className='footer__list__link'>
+              <Link href='/category/kits'>
+                <a className='footer__anchor'>Kits</a>
               </Link>
+            </li>
+            <li className='footer__list__link'>
+              <Link href='/category/training'>
+                <a className='footer__anchor'>Training</a>
+              </Link>
+            </li>
+            <li className='footer__list__link'>
+              <Link href='/category/lifestyle'>
+                <a className='footer__anchor'>Lifestyle</a>
+              </Link>
+            </li>
+            <li className='footer__list__link'>
+              <Link href='/category/accessories'>
+                <a className='footer__anchor'>Accessories</a>
+              </Link>
+            </li>
+          </ul>
+          <ul className='footer__unordered__list__links'>
+            <li className='footer__list__link'>Support</li>
+            <li className='footer__list__link'>
+              <a
+                href='mailto:e-commercesupport@gmail.com'
+                className='footer__anchor'
+              >
+                Email
+              </a>
             </li>
           </ul>
         </div>
       </div>
-      <div className={styles.social}>
-        <h3>Our social networks</h3>
-        <ul>
-          <li>
+      <div className='footer__social__wrapper'>
+        <h3 className='footer__social__title'>Our social networks</h3>
+        <ul className='footer__social__unodered__list'>
+          <li className='footer__social__list'>
             <a
+              className='footer__social__anchor'
               href='https://www.facebook.com'
               target='_blank'
               rel='noopener noreferrer'
@@ -76,8 +79,9 @@ export default function Footer() {
               <i className='fab fa-facebook'></i>
             </a>
           </li>
-          <li>
+          <li className='footer__social__list'>
             <a
+              className='footer__social__anchor'
               href='https://www.instagram.com'
               target='_blank'
               rel='noopener noreferrer'
@@ -85,8 +89,9 @@ export default function Footer() {
               <i className='fab fa-instagram'></i>
             </a>
           </li>
-          <li>
+          <li className='footer__social__list'>
             <a
+              className='footer__social__anchor'
               href='https://www.twitter.com'
               target='_blank'
               rel='noopener noreferrer'
@@ -94,9 +99,10 @@ export default function Footer() {
               <i className='fab fa-twitter'></i>
             </a>
           </li>
-          <li>
+          <li className='footer__social__list'>
             <a
-              href='mailto:e-commerce@gmail.com'
+              className='footer__social__anchor'
+              href='mailto:e-commercesupport@gmail.com'
               target='_blank'
               rel='noopener noreferrer'
             >
@@ -105,27 +111,41 @@ export default function Footer() {
           </li>
         </ul>
       </div>
-      <div className={styles.payment}>
-        <img src='/assets/payments/visa.png' title='visa' alt='visa' />
-        <img src='/assets/payments/paypal.png' title='paypal' alt='paypal' />
+      <div className='footer__payment__methods'>
         <img
+          className='footer__payment__method__image'
+          src='/assets/payments/visa.png'
+          title='visa'
+          alt='visa'
+        />
+        <img
+          className='footer__payment__method__image'
+          src='/assets/payments/paypal.png'
+          title='paypal'
+          alt='paypal'
+        />
+        <img
+          className='footer__payment__method__image'
           src='/assets/payments/mastercard.png'
           title='mastercard'
           alt='mastercard'
         />
         <img
+          className='footer__payment__method__image'
           src='/assets/payments/american-express.png'
           title='american express'
           alt='american express'
         />
       </div>
-      <div className={styles.legal}>
-        <h3>© 2022. All rights reserved /</h3>
+      <div className='footer__legal'>
+        <h3 className='footer__legal__copyright'>
+          © 2022. All rights reserved /
+        </h3>
         <Link href='/terms'>
-          <a>Terms of Use /</a>
+          <a className='footer__legal__anchor'>Terms of Use /</a>
         </Link>
         <Link href='/privacy'>
-          <a>Privacy Policy</a>
+          <a className='footer__legal__anchor'>Privacy Policy</a>
         </Link>
       </div>
     </footer>

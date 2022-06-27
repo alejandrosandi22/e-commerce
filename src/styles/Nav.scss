@@ -1,35 +1,3 @@
-@mixin aEffect() {
-  position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    background: var(--color);
-    bottom: 0;
-    transition: 0.25s;
-  }
-  a {
-    font-size: 1.1em;
-    font-weight: 400;
-    color: var(--color);
-    cursor: pointer;
-    &:hover {
-      color: #222;
-    }
-  }
-  &:hover {
-    &::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      background: #222;
-      bottom: 0;
-    }
-  }
-}
-
 .nav {
   z-index: 200;
   position: fixed;
@@ -43,7 +11,7 @@
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: 5.5rem;
   grid-template-areas: 'logo nav user';
-  h1 {
+  .nav__logo {
     grid-area: logo;
     justify-self: end;
     font-size: 1.5em;
@@ -53,7 +21,7 @@
     padding: 0 0 0 4rem;
     cursor: pointer;
   }
-  .list {
+  .nav__unordered__list__head {
     grid-area: nav;
     list-style: none;
     display: flex;
@@ -62,11 +30,8 @@
     justify-content: space-around;
     width: 80%;
     height: 100%;
-    li {
-      @include aEffect();
-    }
   }
-  .userList {
+  .nav__unordered__list__user__wrapper {
     grid-area: user;
     list-style: none;
     display: flex;
@@ -74,19 +39,16 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    ul {
+    .nav__unordered__list__user {
       list-style: none;
       display: flex;
       justify-content: space-around;
       width: 60px;
-      li {
-        @include aEffect();
-      }
     }
   }
 }
 
-.scroll {
+.nav__scroll {
   height: 4rem;
   grid-template-rows: 4rem;
   transition: 0.4s;
@@ -98,54 +60,11 @@
     height: 8rem;
     grid-template-columns: 50% 50%;
     grid-area: 'logo user';
-    .toggleWrapper {
-      position: absolute;
-      bottom: 3.5rem;
-      left: 0.45rem;
-      width: 3rem;
-      height: 3rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      .toggle,
-      .toggle::after,
-      .toggle::before {
-        z-index: 200;
-        content: '';
-        position: absolute;
-        width: 1.8rem;
-        height: 0.1rem;
-        background: var(--color);
-        transition: 0.1s;
-      }
-      .toggle {
-        top: 1rem;
-      }
-      .toggle::before {
-        top: 0.5rem;
-      }
-      .toggle::after {
-        top: 1rem;
-      }
-      .active {
-        top: unset;
-        transform: rotate(-45deg);
-        transition: 0.2s;
-        &::before {
-          top: 0;
-          transform: rotate(90deg);
-        }
-        &::after {
-          all: unset;
-        }
-      }
-    }
-    h1 {
+    .nav__logo {
       white-space: nowrap;
       font-size: 1.2rem;
     }
-    .list {
+    .nav__unordered__list__head {
       top: 8rem;
       position: fixed;
       flex-direction: column;
@@ -153,7 +72,7 @@
       width: 100%;
       transform: translateX(100%);
     }
-    .userList {
+    .nav__unordered__list__user__wrapper {
       display: flex;
       form {
         position: absolute;
@@ -179,7 +98,7 @@
           }
         }
       }
-      ul {
+      .nav__unordered__list__user {
         position: absolute;
         right: 1.5rem;
       }

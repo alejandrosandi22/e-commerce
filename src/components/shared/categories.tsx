@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import styles from 'styles/Categories.module.scss';
+import LinkEffect from './linkEffect';
 
 function Categories() {
   const [scroll, setScroll] = useState<boolean>(false);
@@ -13,28 +12,16 @@ function Categories() {
   }, []);
 
   return (
-    <ul className={`${styles.categories} ${scroll ? styles.scroll : ''}`}>
-      <li>
-        <Link href='/category/kits'>
-          <a>Kits</a>
-        </Link>
-      </li>
-      <li>
-        <Link href='/category/training'>
-          <a>Training</a>
-        </Link>
-      </li>
-      <li>
-        <Link href='/category/lifestyle'>
-          <a>Lifestyle</a>
-        </Link>
-      </li>
-      <li>
-        <Link href='/category/accessories'>
-          <a>Accessories</a>
-        </Link>
-      </li>
-    </ul>
+    <nav
+      className={`nav__categories ${scroll ? 'nav__categories__scroll' : ''}`}
+    >
+      <ul className='nav__categories__unordered__list'>
+        <LinkEffect href='/category/kits' caption='Kits' />
+        <LinkEffect href='/category/training' caption='Training' />
+        <LinkEffect href='/category/lifestyle' caption='Lifestyle' />
+        <LinkEffect href='/category/accessories' caption='Accessories' />
+      </ul>
+    </nav>
   );
 }
 

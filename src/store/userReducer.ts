@@ -1,27 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CartType } from 'types';
 
-type State = {
+interface UserState {
   id: string;
   name: string;
   email: string;
   cart: CartType;
-};
+}
 
-type Action = {
-  type: string;
-  payload: State;
-};
+const initialState = null as UserState | null;
 
-export const userSlice = createSlice({
-  name: 'user',
-  initialState: null as State | null,
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState,
   reducers: {
-    setUser: (state: State | null, action: Action) => action.payload,
+    setUser(_state: UserState | null, action: PayloadAction<UserState | null>) {
+      return action.payload;
+    },
   },
 });
 
-export const { setUser } = userSlice.actions;
-
-export default userSlice.reducer;
+export const { setUser } = counterSlice.actions;
+export default counterSlice.reducer;

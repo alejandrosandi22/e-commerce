@@ -19,6 +19,7 @@ type ProductType = {
   sold: number;
   rate: number[];
   comments: CommentType[];
+  total?: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -50,6 +51,12 @@ type ItemType = {
   size?: string;
 };
 
+type InvoiceData = {
+  products: number;
+  shipping: number;
+  total: number;
+};
+
 export type {
   ProductType,
   UserType,
@@ -57,4 +64,5 @@ export type {
   CommentType,
   CartType,
   ItemType,
+  InvoiceData,
 };

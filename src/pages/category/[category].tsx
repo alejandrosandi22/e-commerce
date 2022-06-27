@@ -43,6 +43,7 @@ export default function Category() {
         const accessories = json.accessories.map((accessory) => accessory);
 
         setIsLoading(false);
+        console.log([...kits, ...training, ...lifestyle, ...accessories]);
         return setData([...kits, ...training, ...lifestyle, ...accessories]);
       }
 
@@ -65,7 +66,7 @@ export default function Category() {
             <span>Sort By:</span>
             <ul>
               <ActiveLink
-                href={`/category/${category}?sort=sold&order=desc`}
+                href={`/category/${category}?sort=sort&order=desc`}
                 className={styles.active}
               >
                 Relevance
@@ -89,15 +90,13 @@ export default function Category() {
         <ul className={styles.categoryCardsWrapper}>
           {isLoading ? (
             <>
-              <Card loading={true} data={{} as ProductType} />
-              <Card loading={true} data={{} as ProductType} />
-              <Card loading={true} data={{} as ProductType} />
-              <Card loading={true} data={{} as ProductType} />
+              <Card data={null} />
+              <Card data={null} />
+              <Card data={null} />
+              <Card data={null} />
             </>
           ) : (
-            data.map((product) => (
-              <Card key={product._id} data={product} loading={isLoading} />
-            ))
+            data.map((product) => <Card key={product._id} data={product} />)
           )}
         </ul>
       </section>

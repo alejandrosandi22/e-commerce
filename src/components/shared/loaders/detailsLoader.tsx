@@ -1,4 +1,3 @@
-import React from 'react';
 import ContentLoader from 'react-content-loader';
 
 const DetailsLoader = () => (
@@ -9,6 +8,7 @@ const DetailsLoader = () => (
     viewBox='0 0 654 492'
     backgroundColor='#f3f3f3'
     foregroundColor='#ecebeb'
+    id='details-loader'
   >
     <rect x='30' y='151' rx='3' ry='3' width='528' height='20' />
     <rect x='30' y='29' rx='0' ry='0' width='500' height='70' />

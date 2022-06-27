@@ -9,16 +9,10 @@ function priceFormatter(price: number) {
   return `$${splitPrice[0]},${splitPrice[1]}`;
 }
 
-export default function Card({
-  data,
-  loading,
-}: {
-  data: ProductType | null;
-  loading: boolean;
-}) {
+export default function Card({ data }: { data: ProductType | null }) {
   return (
     <>
-      {loading || !data ? (
+      {!data ? (
         <li className={styles.cardLoader}>
           <CardLoader />
         </li>

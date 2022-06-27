@@ -7,9 +7,9 @@
   align-items: center;
   justify-content: center;
   background: var(--background);
-  div {
+  .header__text__wrapper {
     margin: 0 2rem 0 0;
-    h3 {
+    .header__text {
       text-align: end;
       font-size: 7rem;
       font-weight: 100;
@@ -17,14 +17,11 @@
       text-shadow: 5px 5px 0px #c6c6c6;
     }
   }
-  span {
+  .header__images__wrapper {
     position: relative;
     width: 35rem;
     height: 35rem;
     transition: 0.5s;
-    img {
-      filter: drop-shadow(5px 5px 0px #c6c6c6);
-    }
   }
 }
 
@@ -33,11 +30,11 @@
     flex-direction: column;
     div {
       margin: 3rem 0;
-      h3 {
+      .header__text__wrapper {
         font-size: 3rem;
       }
     }
-    span {
+    .header__images__wrapper {
       width: 20rem;
       height: 20rem;
     }
