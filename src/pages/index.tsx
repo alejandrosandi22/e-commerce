@@ -5,7 +5,6 @@ import Header from 'components/header';
 import Categories from 'components/shared/categories';
 import Image from 'next/image';
 import Nav from 'components/shared/nav';
-import styles from 'styles/Home.module.scss';
 import useFetch from 'hooks/useFetch';
 import { CollectionsType } from 'types';
 
@@ -16,18 +15,16 @@ export function QuadCards() {
 
   return (
     <>
-      <QuadCard data={data.kits} loading={loading} type='Kits' />
+      <QuadCard data={loading ? null : data.kits} type='Kits' />
       <QuadCard
-        data={data.training}
-        loading={loading}
+        data={loading ? null : data.training}
         type='Training Products'
       />
       <QuadCard
-        data={data.lifestyle}
-        loading={loading}
+        data={loading ? null : data.lifestyle}
         type='Lifestyle Products'
       />
-      <QuadCard data={data.accessories} loading={loading} type='Accessories' />
+      <QuadCard data={loading ? null : data.accessories} type='Accessories' />
     </>
   );
 }
@@ -38,60 +35,48 @@ export default function Home() {
   );
 
   return (
-    <div className={styles.home}>
+    <div className='home'>
       <Nav />
       <Header />
       <Categories />
-      <main>
-        <section className={styles.pageHeader}>
+      <main className='home__main'>
+        <section className='home__header__page'>
           <Image src='/assets/banner.png' layout='fill' />
         </section>
-        <section className={styles.homeContent}>
-          <ul className={styles.cardsWrapper}>
+        <section className='home__content'>
+          <ul className='home__cards__wrapper'>
             <QuadCards />
           </ul>
-          <div className={styles.princialProducts}>
+          <div className='home__main__products'>
             <Image
               src='/assets/banner2.png'
               layout='fill'
-              className={styles.princialProducts}
+              className='home__main__products'
             />
           </div>
-          <ul>
-            <Card data={loading ? null : data.kits[0]} loading={loading} />
-            <Card data={loading ? null : data.kits[1]} loading={loading} />
-            <Card data={loading ? null : data.kits[2]} loading={loading} />
-            <Card data={loading ? null : data.kits[3]} loading={loading} />
+          <ul className='home__cards__wrapper'>
+            <Card data={loading ? null : data.kits[0]} />
+            <Card data={loading ? null : data.kits[1]} />
+            <Card data={loading ? null : data.kits[2]} />
+            <Card data={loading ? null : data.kits[3]} />
           </ul>
-          <ul>
-            <Card data={loading ? null : data.training[0]} loading={loading} />
-            <Card data={loading ? null : data.training[1]} loading={loading} />
-            <Card data={loading ? null : data.training[2]} loading={loading} />
-            <Card data={loading ? null : data.training[3]} loading={loading} />
+          <ul className='home__cards__wrapper'>
+            <Card data={loading ? null : data.training[0]} />
+            <Card data={loading ? null : data.training[1]} />
+            <Card data={loading ? null : data.training[2]} />
+            <Card data={loading ? null : data.training[3]} />
           </ul>
-          <ul>
-            <Card data={loading ? null : data.lifestyle[0]} loading={loading} />
-            <Card data={loading ? null : data.lifestyle[1]} loading={loading} />
-            <Card data={loading ? null : data.lifestyle[2]} loading={loading} />
-            <Card data={loading ? null : data.lifestyle[3]} loading={loading} />
+          <ul className='home__cards__wrapper'>
+            <Card data={loading ? null : data.lifestyle[0]} />
+            <Card data={loading ? null : data.lifestyle[1]} />
+            <Card data={loading ? null : data.lifestyle[2]} />
+            <Card data={loading ? null : data.lifestyle[3]} />
           </ul>
-          <ul>
-            <Card
-              data={loading ? null : data.accessories[0]}
-              loading={loading}
-            />
-            <Card
-              data={loading ? null : data.accessories[1]}
-              loading={loading}
-            />
-            <Card
-              data={loading ? null : data.accessories[2]}
-              loading={loading}
-            />
-            <Card
-              data={loading ? null : data.accessories[3]}
-              loading={loading}
-            />
+          <ul className='home__cards__wrapper'>
+            <Card data={loading ? null : data.accessories[0]} />
+            <Card data={loading ? null : data.accessories[1]} />
+            <Card data={loading ? null : data.accessories[2]} />
+            <Card data={loading ? null : data.accessories[3]} />
           </ul>
         </section>
       </main>

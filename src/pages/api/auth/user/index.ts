@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
+import User from '../../../../../models/User';
 
-export default function getAuth(req: NextApiRequest, res: NextApiResponse) {
+export default async function getAuth(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const { method } = req;
+  const { id } = req.body;
 
   if (method === 'GET') {
     try {
@@ -13,9 +19,17 @@ export default function getAuth(req: NextApiRequest, res: NextApiResponse) {
         return res.status(202).send(user);
       }
 
-      return res.status(401).send({ message: 'Successful' });
+      return res.status(203).send({ message: 'Unauthorized' });
+    } catch (error: any) {
+      return res.status(500).send({ message: error.message });
+    }
+  }
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  if (method === 'DELETE') {
+    try {
+      const user = await User.findByIdAndDelete(id);
+
+      return res.status(202).send(user);
     } catch (error: any) {
       return res.status(500).send({ message: error.message });
     }

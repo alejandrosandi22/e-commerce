@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'store';
 import Auth from './auth';
+import Modal from './modal';
 
-export default function Layout({ children }: { children?: ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Head>
@@ -13,7 +13,9 @@ export default function Layout({ children }: { children?: ReactNode }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Provider store={store}>
-        <Auth>{children}</Auth>
+        <Modal>
+          <Auth>{children}</Auth>
+        </Modal>
       </Provider>
     </>
   );

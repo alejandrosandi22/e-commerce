@@ -1,10 +1,10 @@
-.searchForm {
+.search__form {
   position: relative;
   height: 100%;
   width: 21rem;
   display: flex;
   align-items: center;
-  input {
+  .search__input {
     position: absolute;
     right: 1rem;
     height: 1.8rem;
@@ -25,7 +25,7 @@
       outline: 1px solid #333;
     }
   }
-  button {
+  .search__button {
     z-index: 10;
     border: none;
     outline: none;
@@ -50,7 +50,7 @@
       padding: 0 1.3rem 0 1rem;
     }
   }
-  .panel {
+  .search__panel {
     z-index: 100;
     position: absolute;
     top: 50px;
@@ -59,11 +59,14 @@
     width: 20rem;
     overflow-x: hidden;
     overflow-y: scroll;
-    section {
-      ul {
+    .search__autocomplete__wrapper {
+      .search__unodered__list__autocomplete {
+        width: 100%;
         list-style: none;
-        li {
-          a {
+        display: flex;
+        flex-direction: column;
+        .search__autocomplete__item {
+          .search__link__item {
             display: flex;
             width: 100%;
             padding: 10px 5px;
@@ -71,17 +74,17 @@
             &:hover {
               filter: brightness(0.9);
             }
-            .imageWrapper {
+            .search__image__wrapper {
               position: relative;
               width: 40px;
               height: 40px;
             }
-            .autoCompleteTextWrapper {
+            .search__autocomplete__text__wrapper {
               padding: 0 10px;
-              h3 {
+              .search__title {
                 font-size: 1.1rem;
               }
-              p {
+              .search__price {
                 font-size: 1rem;
               }
             }

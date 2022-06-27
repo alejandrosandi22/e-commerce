@@ -10,10 +10,17 @@ export default function Auth({ children }: { children?: ReactNode }) {
     (async () => {
       const res: Response = await fetch('/api/auth/user');
       const user = await res.json();
+      const status = res.status;
 
-      dispatch(setUser(user));
+      if (status === 202) {
+        dispatch(setUser(user));
+      }
+
+      return () => {
+        dispatch(setUser(null));
+      };
     })();
   }, []);
 
-  return <>{children}</>;
+  return <div>{children}</div>;
 }

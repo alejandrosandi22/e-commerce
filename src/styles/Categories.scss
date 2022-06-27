@@ -1,0 +1,30 @@
+.nav__categories {
+  z-index: 100;
+  position: sticky;
+  top: 5rem;
+  height: 3rem;
+  width: 100%;
+  background: var(--background);
+  border-top: 1px solid var(--primary);
+  border-bottom: 1px solid var(--primary);
+  list-style: none;
+  transition: 0.4s;
+  .nav__categories__unordered__list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+  }
+}
+.nav__categories__scroll {
+  top: 4rem;
+  transition: 0.4s;
+}
+
+@media (max-width: 1024px) {
+  .nav__categories {
+    top: 8rem;
+  }
+}

@@ -3,10 +3,12 @@ import useFetch from 'hooks/useFetch';
 import styles from 'styles/Suggestions.module.scss';
 import { CollectionsType } from 'types';
 
-export default function Suggestions({ endpoint }: { endpoint: string }) {
+export default function Suggestions({ endpoint }: { endpoint?: string }) {
   const { data: similarData, loading: similarDataLoading } =
     useFetch<CollectionsType>(
-      `https://sp-api.alejandrosandi.com/api/products/team/${endpoint}?sort=sold&limit=1&order=desc`
+      endpoint
+        ? `https://sp-api.alejandrosandi.com/api/products/team/${endpoint}?sort=sold&limit=1&order=desc`
+        : `https://sp-api.alejandrosandi.com/api/products?order=asc&limit=1&sort=sold`
     );
   const { data: recommendedData, loading: recommendedDataLoading } =
     useFetch<CollectionsType>(
@@ -16,92 +18,56 @@ export default function Suggestions({ endpoint }: { endpoint: string }) {
   return (
     <div className={styles.suggestions}>
       <ul>
-        <Card
-          loading={similarDataLoading}
-          data={similarDataLoading ? null : similarData.kits[0]}
-        />
-        <Card
-          loading={similarDataLoading}
-          data={similarDataLoading ? null : similarData.training[0]}
-        />
-        <Card
-          loading={similarDataLoading}
-          data={similarDataLoading ? null : similarData.lifestyle[0]}
-        />
-        <Card
-          loading={similarDataLoading}
-          data={similarDataLoading ? null : similarData.accessories[0]}
-        />
+        <Card data={similarDataLoading ? null : similarData.kits[0]} />
+        <Card data={similarDataLoading ? null : similarData.training[0]} />
+        <Card data={similarDataLoading ? null : similarData.lifestyle[0]} />
+        <Card data={similarDataLoading ? null : similarData.accessories[0]} />
+      </ul>
+      <ul>
+        <Card data={recommendedDataLoading ? null : recommendedData.kits[0]} />
+        <Card data={recommendedDataLoading ? null : recommendedData.kits[1]} />
+        <Card data={recommendedDataLoading ? null : recommendedData.kits[2]} />
+        <Card data={recommendedDataLoading ? null : recommendedData.kits[3]} />
       </ul>
       <ul>
         <Card
-          loading={recommendedDataLoading}
-          data={recommendedDataLoading ? null : recommendedData.kits[0]}
-        />
-        <Card
-          loading={recommendedDataLoading}
-          data={recommendedDataLoading ? null : recommendedData.kits[1]}
-        />
-        <Card
-          loading={recommendedDataLoading}
-          data={recommendedDataLoading ? null : recommendedData.kits[2]}
-        />
-        <Card
-          loading={recommendedDataLoading}
-          data={recommendedDataLoading ? null : recommendedData.kits[3]}
-        />
-      </ul>
-      <ul>
-        <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.training[0]}
         />
         <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.training[1]}
         />
         <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.training[2]}
         />
         <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.training[3]}
         />
       </ul>
       <ul>
         <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.lifestyle[0]}
         />
         <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.lifestyle[1]}
         />
         <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.lifestyle[2]}
         />
         <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.lifestyle[3]}
         />
       </ul>
       <ul>
         <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.accessories[0]}
         />
         <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.accessories[1]}
         />
         <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.accessories[2]}
         />
         <Card
-          loading={recommendedDataLoading}
           data={recommendedDataLoading ? null : recommendedData.accessories[3]}
         />
       </ul>

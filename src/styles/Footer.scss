@@ -6,39 +6,39 @@
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 70% 15% 15%;
-  .info {
+  .footer__info {
     padding: 0 0 0 3rem;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    .title {
+    .footer__title__wrapper {
       display: flex;
       align-items: center;
       gap: 10px;
-      div {
+      .footer__logo__wrapper {
         position: relative;
         width: 50px;
         height: 50px;
       }
-      h2 {
+      .footer__title {
         font-size: 24px;
         color: var(--background);
       }
     }
-    .linksWrapper {
+    .footer__links__wrapper {
       display: flex;
       align-items: center;
       justify-content: space-around;
-      .links {
+      .footer__unordered__list__links {
         list-style: none;
-        min-height: 150px;
-        li {
+        min-height: 100px;
+        .footer__list__link {
           color: var(--background);
           &:nth-child(1) {
             font-weight: bold;
           }
-          a {
+          .footer__anchor {
             font-size: 1.1em;
             font-weight: 400;
             color: #bbb;
@@ -51,24 +51,24 @@
       }
     }
   }
-  .social {
+  .footer__social__wrapper {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
     margin: 0 150px 0 0;
-    h3 {
+    .footer__social__title {
       font-size: 2rem;
       font-weight: 400;
       color: var(--background);
     }
-    ul {
+    .footer__social__unodered__list {
       margin: 20px 0 0 0;
       list-style: none;
       display: flex;
       gap: 10px;
-      li {
-        a {
+      .footer__social__list {
+        .footer__social__anchor {
           font-size: 1.5rem;
           font-weight: 400;
           color: #bbb;
@@ -79,16 +79,8 @@
         }
       }
     }
-    div {
-      position: relative;
-      display: flex;
-      gap: 15px;
-      img {
-        height: 20px;
-      }
-    }
   }
-  .payment {
+  .footer__payment__methods {
     position: relative;
     width: 100%;
     grid-column: 1 / span 2;
@@ -96,11 +88,11 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
-    img {
+    .footer__payment__method__image {
       height: 20px;
     }
   }
-  .legal {
+  .footer__legal {
     grid-column: 1 / span 2;
     grid-row: 3;
     display: flex;
@@ -108,12 +100,12 @@
     align-items: center;
     color: var(--background);
     gap: 3px;
-    h3 {
+    .footer__legal__copyright {
       width: fit-content;
       font-weight: 400;
       font-size: 1.1em;
     }
-    a {
+    .footer__legal__anchor {
       font-size: 1.1em;
       font-weight: 400;
       color: #bbb;
@@ -130,15 +122,15 @@
     height: 430px;
     grid-template-columns: 100%;
     grid-template-rows: 250px 100px 45px 20px;
-    .info {
+    .footer__info {
       padding: 0;
-      .title {
+      .footer__title {
         margin: 10px 0;
         justify-content: center;
       }
-      .linksWrapper {
+      .footer__links__wrapper {
         justify-content: center;
-        .links {
+        .footer__links {
           margin: 10px;
           li {
             margin: 10px 0;
@@ -147,15 +139,15 @@
         }
       }
     }
-    .social {
+    .footer__social {
       margin: 0;
       align-items: center;
     }
-    .payment,
-    .legal {
+    .footer__payment__methods,
+    .footer__legal {
       grid-column: 1 / 1;
     }
-    .legal {
+    .footer__legal {
       grid-row: 4;
     }
   }

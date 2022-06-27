@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 export default function useFetch<T>(url: string) {
   const [data, setData] = useState<T>({} as T);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const refetch = async () => {
     setLoading(true);
@@ -14,7 +15,7 @@ export default function useFetch<T>(url: string) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(url, {
+      await fetch(url, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',
@@ -22,13 +23,13 @@ export default function useFetch<T>(url: string) {
         headers: {
           'Content-Type': 'application/json',
         },
-      });
-      const json = await response.json();
-      setData(json);
+      })
+        .then(async (res) => setData(await res.json()))
+        .catch((error) => setError(error.message));
       setLoading(false);
     }
     fetchData();
   }, [url]);
 
-  return { data, loading, refetch };
+  return { data, loading, error, refetch };
 }

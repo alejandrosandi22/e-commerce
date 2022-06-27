@@ -16,7 +16,7 @@ export default function Details({ product }: { product: ProductType }) {
   const handleAddToCart = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (product.size.length > 0) {
+    if (product.size) {
       if (!sizeProduct) {
         warning('Please select a size', 'Warning');
         return;

@@ -2,21 +2,19 @@ import styles from 'styles/QuadCard.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ProductType } from 'types';
-import QuadCardLoader from 'components/shared/loaders/quadCardLoader';
+import QuadCardLoader from '../loaders/quadCardLoader';
 
 export default function QuadCard({
   data,
-  loading,
   type,
 }: {
-  data: ProductType[];
-  loading: boolean;
+  data: ProductType[] | null;
   type: string;
 }) {
   return (
     <>
       <li className={styles.card}>
-        {loading ? (
+        {!data ? (
           <QuadCardLoader />
         ) : (
           <>

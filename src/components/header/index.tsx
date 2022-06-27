@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import styles from 'styles/Header.module.scss';
 
 export default function Header() {
   const links: string[] = [
@@ -31,14 +30,14 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={styles.header}>
-      <div>
-        <h3>Choose</h3>
-        <h3>Your</h3>
-        <h3>Favorite</h3>
+    <header className='header'>
+      <div className='header__text__wrapper'>
+        <h3 className='header__text'>Choose</h3>
+        <h3 className='header__text'>Your</h3>
+        <h3 className='header__text'>Favorite</h3>
       </div>
-      <span style={animation}>
-        <Image priority src={src} layout='fill' alt='product' />
+      <span className='header__images__wrapper' style={animation}>
+        <Image src={src} layout='fill' alt='product' priority />
       </span>
     </header>
   );

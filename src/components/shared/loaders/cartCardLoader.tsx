@@ -1,4 +1,3 @@
-import React from 'react';
 import ContentLoader from 'react-content-loader';
 
 const CartCardLoader = () => (
@@ -9,6 +8,7 @@ const CartCardLoader = () => (
     viewBox='0 0 543.2 60'
     backgroundColor='#f3f3f3'
     foregroundColor='#ecebeb'
+    id='cart-card-loader'
   >
     <rect x='70' y='7' rx='3' ry='3' width='88' height='6' />
     <rect x='70' y='25' rx='3' ry='3' width='52' height='6' />
