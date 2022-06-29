@@ -43,7 +43,6 @@ export default function Category() {
         const accessories = json.accessories.map((accessory) => accessory);
 
         setIsLoading(false);
-        console.log([...kits, ...training, ...lifestyle, ...accessories]);
         return setData([...kits, ...training, ...lifestyle, ...accessories]);
       }
 

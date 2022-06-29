@@ -57,6 +57,19 @@ type InvoiceData = {
   total: number;
 };
 
+type OrderType = {
+  _id: string;
+  purshasedMethod: string;
+  products: [
+    {
+      productId: string;
+      quantity: number;
+      size: string;
+    }
+  ];
+  total: number;
+};
+
 export type {
   ProductType,
   UserType,
@@ -65,4 +78,5 @@ export type {
   CartType,
   ItemType,
   InvoiceData,
+  OrderType,
 };
