@@ -1,12 +1,14 @@
 import Counter from 'components/shared/counter';
+import { CartLengthContext } from 'context/cartLength';
 import { useAppSelector } from 'hooks';
 import usePriceFormatter from 'hooks/usePriceFormatter';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from 'styles/Details.module.scss';
 import { success, warning } from 'toastr';
 import { ProductType } from 'types';
 
 export default function Details({ product }: { product: ProductType }) {
+  const { refetch } = useContext(CartLengthContext);
   const [amount, setAmount] = useState<number>(1);
   const [sizeProduct, setSizeProduct] = useState<string>('');
   const { finalPrice } = usePriceFormatter(product.price, amount);
@@ -43,6 +45,7 @@ export default function Details({ product }: { product: ProductType }) {
     });
 
     success('Added to cart');
+    refetch();
   };
 
   return (

@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
-import Nav from 'components/shared/nav';
 import Card from 'components/shared/cards/card';
 import ActiveLink from 'components/shared/activeLink';
 import Categories from 'components/shared/categories';
@@ -56,7 +55,6 @@ export default function Category() {
 
   return (
     <div className={styles.categoryContainer}>
-      <Nav />
       <Categories />
       <section className={styles.categoryWrapper}>
         <div className={styles.categoryTitle}>

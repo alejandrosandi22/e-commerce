@@ -1,5 +1,4 @@
 import styles from 'styles/Product.module.scss';
-import Nav from 'components/shared/nav';
 import Footer from 'components/shared/footer';
 import Categories from 'components/shared/categories';
 import Product from 'components/product';
@@ -31,7 +30,6 @@ export default function Products() {
 
   return (
     <div className={styles.product}>
-      <Nav />
       <Categories />
       <Product product={isLoading ? null : data} />
       <ClientsOpinion

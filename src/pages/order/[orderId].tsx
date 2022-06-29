@@ -1,5 +1,4 @@
 import Categories from 'components/shared/categories';
-import Nav from 'components/shared/nav';
 import useFetch from 'hooks/useFetch';
 import { GetServerSideProps } from 'next';
 import { useEffect } from 'react';
@@ -11,7 +10,6 @@ export default function Order({ orderId }: { orderId: string }) {
 
   return (
     <div className='order__container'>
-      <Nav />
       <Categories />
     </div>
   );

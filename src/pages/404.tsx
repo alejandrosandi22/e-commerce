@@ -1,12 +1,10 @@
 import Categories from 'components/shared/categories';
 import Footer from 'components/shared/footer';
-import Nav from 'components/shared/nav';
 import Link from 'next/link';
 
 export default function FourOhFour() {
   return (
     <div className='not__fonud__container'>
-      <Nav />
       <Categories />
       <div className='not__fonud__wrapper'>
         <h1 className='not__found__title'>404</h1>
