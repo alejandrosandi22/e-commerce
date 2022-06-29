@@ -4,7 +4,6 @@ import Footer from 'components/shared/footer';
 import Header from 'components/header';
 import Categories from 'components/shared/categories';
 import Image from 'next/image';
-import Nav from 'components/shared/nav';
 import useFetch from 'hooks/useFetch';
 import { CollectionsType } from 'types';
 
@@ -36,7 +35,6 @@ export default function Home() {
 
   return (
     <div className='home'>
-      <Nav />
       <Header />
       <Categories />
       <main className='home__main'>

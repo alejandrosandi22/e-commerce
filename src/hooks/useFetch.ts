@@ -14,6 +14,7 @@ export default function useFetch<T>(url: string) {
   };
 
   useEffect(() => {
+    if (!url) return;
     async function fetchData() {
       await fetch(url, {
         method: 'GET',

@@ -101,7 +101,34 @@
       .nav__unordered__list__user {
         position: absolute;
         right: 1.5rem;
+        .order__cart__wrapper {
+          position: absolute;
+          .link__effect__anchor {
+            .orders__in__cart {
+              display: flex;
+              position: absolute;
+              height: 20px;
+              width: 20px;
+              font-size: 1.2rem;
+              background: red;
+            }
+          }
+        }
       }
     }
   }
+}
+
+.orders__in__cart {
+  display: grid;
+  place-content: center;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: -100%;
+  right: -100%;
+  border-radius: 50%;
+  font-size: 1rem;
+  background: #c5362e;
+  color: #fff;
 }

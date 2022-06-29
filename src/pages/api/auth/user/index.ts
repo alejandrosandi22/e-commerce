@@ -15,8 +15,11 @@ export default async function getAuth(
       const token = req.cookies['e-commerce-user-token'];
 
       if (token) {
-        const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        return res.status(202).send(user);
+        const user: any = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+        const cart = await User.findById(user.id);
+
+        return res.status(202).send({ user, cart: cart.cart });
       }
 
       return res.status(203).send({ message: 'Unauthorized' });

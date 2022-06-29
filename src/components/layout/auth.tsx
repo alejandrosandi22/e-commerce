@@ -13,7 +13,7 @@ export default function Auth({ children }: { children?: ReactNode }) {
       const status = res.status;
 
       if (status === 202) {
-        dispatch(setUser(user));
+        dispatch(setUser(user.user));
       }
 
       return () => {

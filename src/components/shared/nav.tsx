@@ -2,10 +2,12 @@ import Link from 'next/link';
 import LinkEffect from './linkEffect';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setProfile } from 'store/profileReducer';
-import { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SearchButton from './searchButton';
+import { CartLengthContext } from 'context/cartLength';
 
-export default function Nav() {
+function Nav() {
+  const { length } = useContext(CartLengthContext);
   const [scroll, setScroll] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
@@ -43,10 +45,19 @@ export default function Nav() {
             <li style={{ cursor: 'pointer' }}>
               <i onClick={handleOpen} className='fal fa-user'></i>
             </li>
-            <LinkEffect href={`/cart/${user.id}`} icon='fal fa-shopping-cart' />
+            <li className='link__effect__list order__cart__wrapper'>
+              <Link href={`/cart/${user.id}`}>
+                <a className='link__effect__anchor'>
+                  <p className='orders__in__cart'>{length}</p>
+                  <i className='fal fa-shopping-cart'></i>
+                </a>
+              </Link>
+            </li>
           </ul>
         )}
       </div>
     </nav>
   );
 }
+
+export default React.memo(Nav);

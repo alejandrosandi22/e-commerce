@@ -1,10 +1,16 @@
+import Nav from 'components/shared/nav';
+import { CartLengthProvider } from 'context/cartLength';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { Provider } from 'react-redux';
 import { store } from 'store';
 import Auth from './auth';
 import Modal from './modal';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  const { pathname } = router;
+
   return (
     <>
       <Head>
@@ -14,7 +20,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Head>
       <Provider store={store}>
         <Modal>
-          <Auth>{children}</Auth>
+          <Auth>
+            <CartLengthProvider>
+              {pathname === '/signin' || pathname === '/signup' ? (
+                <></>
+              ) : (
+                <Nav />
+              )}
+              {children}
+            </CartLengthProvider>
+          </Auth>
         </Modal>
       </Provider>
     </>

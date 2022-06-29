@@ -5,7 +5,6 @@ import CartCard from 'components/shared/cards/cartCard';
 import Categories from 'components/shared/categories';
 import Footer from 'components/shared/footer';
 import Loading from 'components/shared/Loading';
-import Nav from 'components/shared/nav';
 import { useEffect, useState } from 'react';
 import { CartType, InvoiceData, ItemType, ProductType } from 'types';
 import { GetServerSideProps } from 'next';
@@ -73,7 +72,6 @@ export default function Cart({ id }: { id: string }) {
 
   return (
     <div className='cart__container'>
-      <Nav />
       <Categories />
       <section className='cart__wrapper'>
         <div
