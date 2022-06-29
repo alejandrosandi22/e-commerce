@@ -32,6 +32,30 @@ const userSchema = new Schema(
         },
       },
     ],
+    orders: [
+      {
+        purshasedMethod: {
+          type: String,
+        },
+        products: [
+          {
+            productId: {
+              type: String,
+            },
+            quantity: {
+              type: Number,
+            },
+            size: {
+              type: String,
+              required: false,
+            },
+          },
+        ],
+        total: {
+          type: Schema.Types.Decimal128,
+        },
+      },
+    ],
   },
   {
     timestamps: true,

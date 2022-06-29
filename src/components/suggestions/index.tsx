@@ -16,20 +16,20 @@ export default function Suggestions({ endpoint }: { endpoint?: string }) {
     );
 
   return (
-    <div className={styles.suggestions}>
-      <ul>
+    <div className='suggestions__container'>
+      <ul className='suggestions__unordered__list'>
         <Card data={similarDataLoading ? null : similarData.kits[0]} />
         <Card data={similarDataLoading ? null : similarData.training[0]} />
         <Card data={similarDataLoading ? null : similarData.lifestyle[0]} />
         <Card data={similarDataLoading ? null : similarData.accessories[0]} />
       </ul>
-      <ul>
+      <ul className='suggestions__unordered__list'>
         <Card data={recommendedDataLoading ? null : recommendedData.kits[0]} />
         <Card data={recommendedDataLoading ? null : recommendedData.kits[1]} />
         <Card data={recommendedDataLoading ? null : recommendedData.kits[2]} />
         <Card data={recommendedDataLoading ? null : recommendedData.kits[3]} />
       </ul>
-      <ul>
+      <ul className='suggestions__unordered__list'>
         <Card
           data={recommendedDataLoading ? null : recommendedData.training[0]}
         />
@@ -43,7 +43,7 @@ export default function Suggestions({ endpoint }: { endpoint?: string }) {
           data={recommendedDataLoading ? null : recommendedData.training[3]}
         />
       </ul>
-      <ul>
+      <ul className='suggestions__unordered__list'>
         <Card
           data={recommendedDataLoading ? null : recommendedData.lifestyle[0]}
         />
@@ -57,7 +57,7 @@ export default function Suggestions({ endpoint }: { endpoint?: string }) {
           data={recommendedDataLoading ? null : recommendedData.lifestyle[3]}
         />
       </ul>
-      <ul>
+      <ul className='suggestions__unordered__list'>
         <Card
           data={recommendedDataLoading ? null : recommendedData.accessories[0]}
         />

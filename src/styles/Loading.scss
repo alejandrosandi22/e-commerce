@@ -1,4 +1,4 @@
-.loading {
+.loading__container {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  i {
+  .loading__icon {
     color: #000;
     font-size: 3rem;
     animation: rotate 2s linear infinite;

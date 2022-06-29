@@ -1,14 +1,16 @@
-.cartContainer {
+.cart__container {
   min-height: 100vh;
   background: var(--primary);
-  .cartWrapper {
+  .cart__wrapper {
+    position: relative;
     width: 95%;
     padding: 20px 10px;
     margin: 7rem auto 20px auto;
-    min-height: 60vh;
+    height: 70vh;
+    max-height: 1000px;
     display: flex;
     background: #fff;
-    .cartProducts {
+    .cart__products {
       width: 70%;
       height: 100%;
       max-height: 500px;
@@ -17,58 +19,51 @@
       align-items: center;
       overflow-y: scroll;
     }
-    .cartEmpty {
-      width: 45%;
+    .cart__products__empty {
+      position: absolute;
+      width: 100%;
+    }
+    .cart__empty {
+      width: 100%;
       height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      h1 {
+      .cart__empty__title {
         font-size: 2rem;
         font-weight: bold;
         color: var(--color);
         margin: 20px;
       }
-      button {
+      .cart__empty__button {
         width: 150px;
-        height: 3rem;
+        height: 3.5rem;
         border: none;
         border-radius: 5px;
         color: var(--color);
+        background: #eee;
         font-size: 1.2rem;
         font-weight: bold;
-        transition: 0.25s;
+        display: grid;
+        place-content: center;
         &:hover {
           filter: brightness(0.9);
         }
       }
     }
-    .cartTotal {
+    .cart__invoice {
       width: 30%;
       height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      h1 {
+      .cart__invoice__title {
         font-size: 2rem;
         font-weight: bold;
         color: var(--color);
         margin: 20px;
-      }
-      button {
-        width: 150px;
-        height: 3rem;
-        border: none;
-        border-radius: 5px;
-        color: var(--color);
-        font-size: 1.2rem;
-        font-weight: bold;
-        transition: 0.25s;
-        &:hover {
-          filter: brightness(0.9);
-        }
       }
     }
   }

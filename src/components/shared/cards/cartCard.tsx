@@ -21,7 +21,7 @@ function CartCard({
     `https://sp-api.alejandrosandi.com/api/products/${item.productId}`
   );
 
-  const { finalPrice } = usePriceFormatter(data.price, item.quantity);
+  /* onst { finalPrice } = usePriceFormatter(data.price ?? 0, item.quantity ?? 1); */
 
   const handleDelete = async () => {
     await fetch(`/api/cart?id=${userId}`, {
@@ -73,7 +73,7 @@ function CartCard({
           </Link>
           <p>Size: {item.size}</p>
           <p>Quantity: {item.quantity}</p>
-          <p>{finalPrice}</p>
+          <p>{0}</p>
         </div>
       </div>
       <div className={styles.cartCard__actions}>
